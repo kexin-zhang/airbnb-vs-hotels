@@ -83,7 +83,7 @@ def parse(locality,checkin_date,checkout_date,sort):
         raw_hotel_features = hotel.xpath(XPATH_HOTEL_FEATURES)
         raw_hotel_price_per_night  = hotel.xpath(XPATH_HOTEL_PRICE)
 
-        url = 'http://www.tripadvisor.com'+raw_hotel_link[0] if raw_hotel_link else  None
+        url = 'http://www.tripadvisor.com' + raw_hotel_link[0] if raw_hotel_link else  None
         reviews = re.findall('(\d+\,?\d+)',raw_no_of_reviews[0])[0].replace(',','') if raw_no_of_reviews else None
         rank = ''.join(raw_rank) if raw_rank else None
         rating = ''.join(raw_rating).replace(' of 5 bubbles','') if raw_rating else None
