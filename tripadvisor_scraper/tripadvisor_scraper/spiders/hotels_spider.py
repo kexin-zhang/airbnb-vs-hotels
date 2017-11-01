@@ -6,7 +6,7 @@ class HotelSpider(scrapy.Spider):
     name = "hotels"
 
     def start_requests(self):
-        with open("output.json") as f:
+        with open("nyc_listings1.json") as f:
             listings = json.load(f)
 
         for listing in listings:

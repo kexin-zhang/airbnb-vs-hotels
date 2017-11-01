@@ -11,7 +11,7 @@ class BaseSpider(scrapy.Spider):
     def start_requests(self):
         BASE_URL = 'https://www.tripadvisor.com/TypeAheadJson?action=API&startTime='+str(int(time()))+'&uiOrigin=GEOSCOPE&source=GEOSCOPE&interleaved=true&types=geo,theme_park&neighborhood_geos=true&link_type=hotel&details=true&max=12&injectNeighborhoods=true&query='
         cities = [
-            'boston'
+            'new york city'
         ]
         urls = [BASE_URL + city for city in cities]
 
