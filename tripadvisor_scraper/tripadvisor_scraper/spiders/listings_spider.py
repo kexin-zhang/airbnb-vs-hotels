@@ -34,7 +34,7 @@ class ListingsSpider(scrapy.Spider):
         form_data = {
                 'adults': '2',
                 'dateBumped': 'NONE',
-                'displayedSortOrder': 'recommended',
+                'displayedSortOrder': 'popularity',
                 'geo': '',
                 'hs': '',
                 'isFirstPageLoad': 'false',
@@ -44,7 +44,7 @@ class ListingsSpider(scrapy.Spider):
                 'rooms': '1',
                 'scid': 'null_coupon',
                 'searchAll': 'false',
-                'seen': '0',
+                'seen': '540',
                 'sequence': '7',
                 'o':"0",
                 'staydates': DATES
@@ -88,6 +88,7 @@ class ListingsSpider(scrapy.Spider):
                 rating = rating.replace(' of 5 bubbles','').strip()
             if reviews:
                 reviews = reviews.replace(' reviews', '').strip()
+                reviews = reviews.replace(' review', '') # in case there's only 1 review
             if name:
                 name = name.strip()
             if price:
