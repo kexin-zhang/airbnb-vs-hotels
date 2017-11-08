@@ -13,17 +13,17 @@ coords = [
 
 payload = {
 	'apikey': 'LYnMGAajPtInzPDn6RFA6D1jZqUFFABj',
-	'latitude': '40.7831',
-	'longitude': '-73.9712',
-	'radius': 5,
+	'latitude': 37.7749,
+	'longitude': -122.4194,
+	'radius': 30,
 	'check_in': '2017-12-15',
 	'check_out': '2017-12-16',
-	'number_of_results': 160,
+	# 'number_of_results': 160,
 	'all_rooms': True,
 	'show_sold_out': True
 }
 
 r = requests.get(url, params=payload)
 
-with open("out2.json", "w") as out:
-	json.dump(r.json(), out)
+with open("sf.json", "w") as out:
+	out.write(json.dumps(r.json(), indent=4))
