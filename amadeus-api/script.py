@@ -18,7 +18,7 @@ payload = {
 	'radius': 30,
 	'check_in': '2017-12-15',
 	'check_out': '2017-12-16',
-	# 'number_of_results': 160,
+	'number_of_results': 160,
 	'all_rooms': True,
 	'show_sold_out': True
 }

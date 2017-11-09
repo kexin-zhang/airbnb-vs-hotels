@@ -44,7 +44,7 @@ class ListingsSpider(scrapy.Spider):
                 'rooms': '1',
                 'scid': 'null_coupon',
                 'searchAll': 'false',
-                'seen': '60',
+                'seen': '150',
                 'sequence': '7',
                 'o':"0",
                 'staydates': DATES
