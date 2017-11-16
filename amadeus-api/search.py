@@ -27,7 +27,7 @@ with open("../tripadvisor_scraper/nyc_listings_all.csv") as f:
 	reader = csv.DictReader(f)
 	for line in reader:
 		osm_payload = {
-			"q": line["address"],
+			"q": line["address"].split(",")[0] + " New York",
 			"format": "json"
 		}
 		r1 = requests.get("http://nominatim.openstreetmap.org/search", params=osm_payload)
@@ -47,7 +47,7 @@ with open("../tripadvisor_scraper/nyc_listings_all.csv") as f:
 			else:
 				print("500")
 
-			with open("x.json", "w") as f:
+			with open("x8.json", "w") as f:
 				json.dump(out, f)
 
 		else:

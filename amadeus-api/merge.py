@@ -3,21 +3,15 @@ import json, hashlib
 added = set()
 data = []
 
-for item in ["data_final.json", "x5.json", "x6.json"]:
+for item in ["data_final.json", "x5.json", "x6.json", "x7.json", "x8.json"]:
     with open(item) as f:
         x = json.load(f)
-    print len(x)
+    print(len(x))
     for result in x:
-        try:
-            if result["address"]["region"] == "NY":
-                hashStr = result["property_name"]
-                nameHash = hashlib.sha256(hashStr)
-                if nameHash not in added:
-                    data.append(result)
-                    added.add(nameHash)
-        except:
-            pass
+        if result["property_code"] not in added:
+            added.add(result["property_code"])
+            data.append(result)
 
-print len(data)
-with open("conglomerate.json", "w") as out:
+print(len(data))
+with open("conglomerate3.json", "w") as out:
     json.dump(data, out)
