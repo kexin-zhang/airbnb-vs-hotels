@@ -1,6 +1,7 @@
 # Data Description
 
-Data was obtained by merging collected data from TripAdvisor and the AmadeusAPI
+Data was obtained by merging collected data from TripAdvisor and the AmadeusAPI.
+
 `hotel_identifiers.csv`: Basic identifying information for the 274 hotels in our dataset.
 List of hotel dictionaries with the following attributes:
 * tripadvisor_name: name displayed on TripAdvisor
