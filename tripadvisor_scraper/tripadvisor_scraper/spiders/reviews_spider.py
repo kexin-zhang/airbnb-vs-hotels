@@ -11,8 +11,9 @@ class ReviewsSpider(scrapy.Spider):
     name = "reviews"
 
     def start_requests(self):       
-        with open("output/nyc_listingsv2.json") as f:
-            hotels = json.load(f)
+        with open(self.filename) as f:
+            reader = csv.DictReader(f)
+            hotels = [{"url": item["tripadvisor_url"]} for item in reader]
 
         for item in hotels:
             url = urljoin('http://www.tripadvisor.com', item["url"])
