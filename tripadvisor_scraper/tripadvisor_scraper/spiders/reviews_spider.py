@@ -39,9 +39,11 @@ class ReviewsSpider(scrapy.Spider):
                     if res:
                         rating = res.group(1)
                         rating = int(rating) / 10
-                text = div.xpath('.//div[contains(@class, "prw_reviews_text_summary_hsx")]//text()').extract()
+                text = div.xpath('(.//div[contains(@class, "prw_reviews_text_summary_hsx")])[1]//text()').extract() 
                 if text:
                     text = ' '.join(text)
+                else:
+                    text = ''
                 review_date = div.xpath('.//span[contains(@class, "ratingDate")]//@title').extract_first()  
                 review_username = div.xpath('.//div[contains(@class, "username")]//text()').extract_first() 
                 review_location = div.xpath('.//div[contains(@class, "location")]//text()').extract_first() 

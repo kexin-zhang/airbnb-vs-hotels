@@ -29,3 +29,13 @@ List of hotel dictionaries with the following attributes:
 List of hotel dictionaries with the following attributes:
 * rooms: list of dictionaries with information about the room type and the price of the room
 * property_code: this corresponds with the amadeus_code field in the other files
+
+`reviews<x>.jl` TripAdvisor reviews for each hotel (on Dropbox)
+Reviews are in json lines format - each line in the file is a JSON with the following review information
+* review_username: username of TripAdvisor reviewer
+* review_date: date the user wrote the review
+* review_location: location of the user that left the review
+* rating: scale from 1 - 5
+* title: title of review
+* text: text content of review
+* url: this is the hotel's TripAdvisor url, use this to match up reviews with hotels
