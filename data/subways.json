@@ -1,0 +1,2093 @@
+{
+  "355": {
+    "type": "Feature",
+    "properties": {
+      "name": "57th St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "N-Q-R-W",
+      "objectid": "355",
+      "notes": "N,Q-all times, R-all times exc nights, W part time"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.98072973372128,
+        40.76456552501829
+      ]
+    }
+  },
+  "200": {
+    "type": "Feature",
+    "properties": {
+      "name": "28th St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "4-6-6 Express",
+      "objectid": "200",
+      "notes": "4 nights, 6-all times, 6 Express-weekdays AM southbound, PM northbound"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.98426400110407,
+        40.743069999259035
+      ]
+    }
+  },
+  "144": {
+    "type": "Feature",
+    "properties": {
+      "name": "28th St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "N-Q-R-W",
+      "objectid": "144",
+      "notes": "N-all times, R-all times exc nights, part time"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.98869800128737,
+        40.74545399979951
+      ]
+    }
+  },
+  "356": {
+    "type": "Feature",
+    "properties": {
+      "name": "5th Ave - 59th St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "N-R-W",
+      "objectid": "356",
+      "notes": "N-all times, R-all times exc nights, W part time"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.97334700047045,
+        40.764810999755284
+      ]
+    }
+  },
+  "362": {
+    "type": "Feature",
+    "properties": {
+      "name": "42nd St - Port Authority Bus Term",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "A-C-E",
+      "objectid": "362",
+      "notes": "A,E-all times, C-all times exc nights"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.98973500085859,
+        40.757307998551504
+      ]
+    }
+  },
+  "348": {
+    "type": "Feature",
+    "properties": {
+      "name": "7th Ave",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "B-D-E",
+      "objectid": "348",
+      "notes": "D,E-all times, B-weekdays and evenings"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.98169782344476,
+        40.76297015245628
+      ]
+    }
+  },
+  "457": {
+    "type": "Feature",
+    "properties": {
+      "name": "Bleecker St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "4-6-6 Express",
+      "objectid": "457",
+      "notes": "4 nights, 6-all times, 6 Express-weekdays PM"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.99465900006331,
+        40.72591466682659
+      ]
+    }
+  },
+  "92": {
+    "type": "Feature",
+    "properties": {
+      "name": "23rd St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "4-6-6 Express",
+      "objectid": "92",
+      "notes": "4 nights, 6-all times, 6 Express-weekdays AM southbound, PM northbound"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.98659900207888,
+        40.739864000474604
+      ]
+    }
+  },
+  "369": {
+    "type": "Feature",
+    "properties": {
+      "name": "East Broadway",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "F",
+      "objectid": "369",
+      "notes": "F-all times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.99017700122197,
+        40.713855001020406
+      ]
+    }
+  },
+  "32": {
+    "type": "Feature",
+    "properties": {
+      "name": "33rd St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "4-6-6 Express",
+      "objectid": "32",
+      "notes": "4 nights, 6-all times, 6 Express-weekdays AM southbound, PM northbound"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.98207600148947,
+        40.74608099909145
+      ]
+    }
+  },
+  "350": {
+    "type": "Feature",
+    "properties": {
+      "name": "57th St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "F",
+      "objectid": "350",
+      "notes": "F-all times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.97736800085171,
+        40.76408500081713
+      ]
+    }
+  },
+  "437": {
+    "type": "Feature",
+    "properties": {
+      "name": "34th St - Penn Station",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "A-C-E",
+      "objectid": "437",
+      "notes": "A,E-all times, C-all times exc nights"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.99339099970578,
+        40.752287000775894
+      ]
+    }
+  },
+  "85": {
+    "type": "Feature",
+    "properties": {
+      "name": "51st St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "4-6-6 Express",
+      "objectid": "85",
+      "notes": "4 nights, 6-all times, 6 Express-weekdays AM southbound, PM northbound"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.97192000069982,
+        40.75710699989316
+      ]
+    }
+  },
+  "441": {
+    "type": "Feature",
+    "properties": {
+      "name": "14th St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "F-M",
+      "objectid": "441",
+      "notes": "F-all times, M-weekdays and evenings"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.99620899921355,
+        40.73822799969515
+      ]
+    }
+  },
+  "199": {
+    "type": "Feature",
+    "properties": {
+      "name": "28th St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "1-2",
+      "objectid": "199",
+      "notes": "1-all times, 2-nights"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.99336500134324,
+        40.74721499918219
+      ]
+    }
+  },
+  "97": {
+    "type": "Feature",
+    "properties": {
+      "name": "Houston St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "1-2",
+      "objectid": "97",
+      "notes": "1-all times, 2-nights"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -74.00536700180581,
+        40.728251000730204
+      ]
+    }
+  },
+  "643": {
+    "type": "Feature",
+    "properties": {
+      "name": "96th St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "Q",
+      "objectid": "643",
+      "notes": "Q-all times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.9470660219183,
+        40.784236650177654
+      ]
+    }
+  },
+  "430": {
+    "type": "Feature",
+    "properties": {
+      "name": "Wall St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "2-3",
+      "objectid": "430",
+      "notes": "2-all times, 3-all times exc nights"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -74.00909999844257,
+        40.706820999753376
+      ]
+    }
+  },
+  "354": {
+    "type": "Feature",
+    "properties": {
+      "name": "49th St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "N-Q-R-W",
+      "objectid": "354",
+      "notes": "N-all times, Q-all times exc weekends, R-all times exc nights, W part time"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.98420956591096,
+        40.759801973870694
+      ]
+    }
+  },
+  "466": {
+    "type": "Feature",
+    "properties": {
+      "name": "5th Ave - Bryant Pk",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "7-7 Express",
+      "objectid": "466",
+      "notes": "7-all times, 7 Express-rush hours AM westbound, PM eastbound"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.98196299856706,
+        40.75382100064824
+      ]
+    }
+  },
+  "143": {
+    "type": "Feature",
+    "properties": {
+      "name": "Lexington Ave - 53rd St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "E-M",
+      "objectid": "143",
+      "notes": "E-all times, M-weekdays and evenings"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.96907237490204,
+        40.75746830782865
+      ]
+    }
+  },
+  "358": {
+    "type": "Feature",
+    "properties": {
+      "name": "34th St - Penn Station",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "1-2-3",
+      "objectid": "358",
+      "notes": "1,2,3-all times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.99105699913983,
+        40.75037300003949
+      ]
+    }
+  },
+  "56": {
+    "type": "Feature",
+    "properties": {
+      "name": "72nd St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "A-B-C",
+      "objectid": "56",
+      "notes": "A-nights, B-weekdays and evenings, C-all times exc nights"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.976336575218,
+        40.77551939729258
+      ]
+    }
+  },
+  "84": {
+    "type": "Feature",
+    "properties": {
+      "name": "W 4th St - Washington Sq (Lower)",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "B-D-F-M",
+      "objectid": "84",
+      "notes": "B,M-weekdays and evenings, D,F-all times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -74.00030814755975,
+        40.732254493367876
+      ]
+    }
+  },
+  "347": {
+    "type": "Feature",
+    "properties": {
+      "name": "50th St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "A-C-E",
+      "objectid": "347",
+      "notes": "A-nights, C-all other times, E-all times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.98598400026407,
+        40.76245599925997
+      ]
+    }
+  },
+  "444": {
+    "type": "Feature",
+    "properties": {
+      "name": "14th St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "A-C-E",
+      "objectid": "444",
+      "notes": "A,E-all times, C-all times exc nights"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -74.00168999937027,
+        40.740893000193296
+      ]
+    }
+  },
+  "94": {
+    "type": "Feature",
+    "properties": {
+      "name": "59th St - Columbus Circle",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "1-2",
+      "objectid": "94",
+      "notes": "1-all times, 2-nights"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.98192900232715,
+        40.76824700063689
+      ]
+    }
+  },
+  "49": {
+    "type": "Feature",
+    "properties": {
+      "name": "Lexington Ave - 59th St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "4-5-6-6 Express",
+      "objectid": "49",
+      "notes": "4,6-all times, 5-all times exc nights, 6 Express-weekdays AM southbound, PM northbound"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.9679670004732,
+        40.762526000304575
+      ]
+    }
+  },
+  "60": {
+    "type": "Feature",
+    "properties": {
+      "name": "42nd St - Bryant Pk",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "B-D-F-M",
+      "objectid": "60",
+      "notes": "B,M-weekdays and evenings, D,F-all times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.98459099904711,
+        40.754184001312545
+      ]
+    }
+  },
+  "34": {
+    "type": "Feature",
+    "properties": {
+      "name": "77th St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "4-6-6 Express",
+      "objectid": "34",
+      "notes": "4 nights, 6-all times, 6 Express-weekdays AM southbound, PM northbound"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.95987399886047,
+        40.77362000074615
+      ]
+    }
+  },
+  "204": {
+    "type": "Feature",
+    "properties": {
+      "name": "Grand Central - 42nd St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "7-7 Express",
+      "objectid": "204",
+      "notes": "7-all times, 7 Express-rush hours AM westbound, PM eastbound"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.97604100111508,
+        40.751431000286864
+      ]
+    }
+  },
+  "349": {
+    "type": "Feature",
+    "properties": {
+      "name": "47th-50th Sts - Rockefeller Ctr",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "B-D-F-M",
+      "objectid": "349",
+      "notes": "B,M-weekdays and evenings, D,F-all times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.98133100227702,
+        40.75864100159815
+      ]
+    }
+  },
+  "380": {
+    "type": "Feature",
+    "properties": {
+      "name": "23rd St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "N-Q-R-W",
+      "objectid": "380",
+      "notes": "N-all times, Q-nights, R-all times exc nights"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.98934400102907,
+        40.74130266729
+      ]
+    }
+  },
+  "11": {
+    "type": "Feature",
+    "properties": {
+      "name": "Delancey St - Essex St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "J-M-Z",
+      "objectid": "11",
+      "notes": "J-all times, M-all times exc nights, Z-rush hours AM westbound, PM eastbound"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.98740940202974,
+        40.71830605618619
+      ]
+    }
+  },
+  "366": {
+    "type": "Feature",
+    "properties": {
+      "name": "Herald Sq - 34th St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "B-D-F-M",
+      "objectid": "366",
+      "notes": "B,M-weekdays and evenings, D,F-all times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.98777189072918,
+        40.74978939990011
+      ]
+    }
+  },
+  "193": {
+    "type": "Feature",
+    "properties": {
+      "name": "79th St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "1-2",
+      "objectid": "193",
+      "notes": "1-all times, 2-nights"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.97991700056134,
+        40.78393399959032
+      ]
+    }
+  },
+  "470": {
+    "type": "Feature",
+    "properties": {
+      "name": "34th St - Hudson Yards",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "7-7 Express",
+      "objectid": "470",
+      "notes": "7-all times, 7 Express-rush hours AM westbound, PM eastbound"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -74.00219709442206,
+        40.75544635961596
+      ]
+    }
+  },
+  "365": {
+    "type": "Feature",
+    "properties": {
+      "name": "23rd St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "F-M",
+      "objectid": "365",
+      "notes": "F-all times, M-weekdays and evenings"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.99276500471389,
+        40.742954317826005
+      ]
+    }
+  },
+  "467": {
+    "type": "Feature",
+    "properties": {
+      "name": "Spring St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "4-6-6 Express",
+      "objectid": "467",
+      "notes": "4 nights, 6-all times, 6 Express-weekdays AM southbound, PM northbound"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.99714100006673,
+        40.72230099999366
+      ]
+    }
+  },
+  "434": {
+    "type": "Feature",
+    "properties": {
+      "name": "Bowery",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "J-Z",
+      "objectid": "434",
+      "notes": "J-all times, Z-rush hours AM westbound, PM eastbound"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.99380690654237,
+        40.720246883147254
+      ]
+    }
+  },
+  "105": {
+    "type": "Feature",
+    "properties": {
+      "name": "Union Sq - 14th St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "4-5-6-6 Express",
+      "objectid": "105",
+      "notes": "4,6-all times, 5-all times exc nights, 6 Express-weekdays AM southbound, PM northbound"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.98995099881881,
+        40.734673000996125
+      ]
+    }
+  },
+  "145": {
+    "type": "Feature",
+    "properties": {
+      "name": "Herald Sq - 34th St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "N-Q-R-W",
+      "objectid": "145",
+      "notes": "N,Q-all times, R-all times exc nights"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.9879368338264,
+        40.74964456009442
+      ]
+    }
+  },
+  "360": {
+    "type": "Feature",
+    "properties": {
+      "name": "Fulton St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "A-C",
+      "objectid": "360",
+      "notes": "A-all times, C-all times exc nights"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -74.00762309323994,
+        40.71016216530185
+      ]
+    }
+  },
+  "403": {
+    "type": "Feature",
+    "properties": {
+      "name": "Park Pl",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "2-3",
+      "objectid": "403",
+      "notes": "2-all times, 3-all times exc nights"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -74.00881099997359,
+        40.713050999077694
+      ]
+    }
+  },
+  "353": {
+    "type": "Feature",
+    "properties": {
+      "name": "59th St - Columbus Circle",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "A-B-C-D",
+      "objectid": "353",
+      "notes": "A,D-all times, B-weekdays and evenings, C-all times exc nights"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.98164872301398,
+        40.768249531776064
+      ]
+    }
+  },
+  "443": {
+    "type": "Feature",
+    "properties": {
+      "name": "8th Ave",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "L",
+      "objectid": "443",
+      "notes": "L-all times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -74.00257800104762,
+        40.73977666638199
+      ]
+    }
+  },
+  "158": {
+    "type": "Feature",
+    "properties": {
+      "name": "96th St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "1-2-3",
+      "objectid": "158",
+      "notes": "1,2,3-all times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.97232299915696,
+        40.79391900121471
+      ]
+    }
+  },
+  "96": {
+    "type": "Feature",
+    "properties": {
+      "name": "23rd St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "1-2",
+      "objectid": "96",
+      "notes": "1-all times, 2-nights"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.9956570016487,
+        40.74408099989751
+      ]
+    }
+  },
+  "432": {
+    "type": "Feature",
+    "properties": {
+      "name": "Grand St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "B-D",
+      "objectid": "432",
+      "notes": "B-weekdays and evenings, D-all times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.99375299913589,
+        40.71826699954992
+      ]
+    }
+  },
+  "159": {
+    "type": "Feature",
+    "properties": {
+      "name": "103rd St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "1",
+      "objectid": "159",
+      "notes": "1-all times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.96837899960818,
+        40.799446000334825
+      ]
+    }
+  },
+  "3": {
+    "type": "Feature",
+    "properties": {
+      "name": "50th St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "1-2",
+      "objectid": "3",
+      "notes": "1-all times, 2-nights"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.98384899986625,
+        40.76172799961419
+      ]
+    }
+  },
+  "428": {
+    "type": "Feature",
+    "properties": {
+      "name": "Broad St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "J-Z",
+      "objectid": "428",
+      "notes": "J-all times, Z-rush hours AM westbound, PM eastbound"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -74.01105599991755,
+        40.706476001106005
+      ]
+    }
+  },
+  "425": {
+    "type": "Feature",
+    "properties": {
+      "name": "Rector St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "1",
+      "objectid": "425",
+      "notes": "1-all times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -74.01378300119742,
+        40.707512999521775
+      ]
+    }
+  },
+  "427": {
+    "type": "Feature",
+    "properties": {
+      "name": "Fulton St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "4-5",
+      "objectid": "427",
+      "notes": "4-all times, 5-weekdays"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -74.00950899856461,
+        40.710367998822136
+      ]
+    }
+  },
+  "421": {
+    "type": "Feature",
+    "properties": {
+      "name": "Whitehall St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "R-W",
+      "objectid": "421",
+      "notes": "N-nights, R-all other times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -74.0130072374272,
+        40.703142373599135
+      ]
+    }
+  },
+  "399": {
+    "type": "Feature",
+    "properties": {
+      "name": "125th St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "A-B-C-D",
+      "objectid": "399",
+      "notes": "A,D-all times, B-weekdays and evenings, C-all times exc nights"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.95224799734774,
+        40.811071672994565
+      ]
+    }
+  },
+  "371": {
+    "type": "Feature",
+    "properties": {
+      "name": "Lower East Side - 2nd Ave",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "F",
+      "objectid": "371",
+      "notes": "F-all times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.98993800003434,
+        40.72340166574911
+      ]
+    }
+  },
+  "451": {
+    "type": "Feature",
+    "properties": {
+      "name": "86th St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "4-5-6-6 Express",
+      "objectid": "451",
+      "notes": "4,6-all times, 5-all times exc nights, 6 Express-weekdays AM southbound, PM northbound"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.95558899985132,
+        40.77949199820952
+      ]
+    }
+  },
+  "422": {
+    "type": "Feature",
+    "properties": {
+      "name": "Rector St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "R-W",
+      "objectid": "422",
+      "notes": "N-nights, R-all other times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -74.01297456253795,
+        40.707744756294474
+      ]
+    }
+  },
+  "81": {
+    "type": "Feature",
+    "properties": {
+      "name": "Grand Central - 42nd St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "S",
+      "objectid": "81",
+      "notes": "S to Times Sq-all times exc nights, closed nights-use 7"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.97918899989101,
+        40.75276866674217
+      ]
+    }
+  },
+  "404": {
+    "type": "Feature",
+    "properties": {
+      "name": "Chambers St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "1-2-3",
+      "objectid": "404",
+      "notes": "1,2-all times, 3-all times exc nights"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -74.00926600170112,
+        40.71547800011327
+      ]
+    }
+  },
+  "429": {
+    "type": "Feature",
+    "properties": {
+      "name": "Cortlandt St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "R-W",
+      "objectid": "429",
+      "notes": "N-nights, R-all other times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -74.01113196473266,
+        40.7105129841524
+      ]
+    }
+  },
+  "414": {
+    "type": "Feature",
+    "properties": {
+      "name": "Chambers St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "J-Z",
+      "objectid": "414",
+      "notes": "J-all times, Z-rush hours AM westbound, PM eastbound"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -74.00340673031336,
+        40.71323378962671
+      ]
+    }
+  },
+  "415": {
+    "type": "Feature",
+    "properties": {
+      "name": "Canal St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "J-Z",
+      "objectid": "415",
+      "notes": "J-all times, Z-rush hours AM westbound, PM eastbound"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.99982638545937,
+        40.71817387697391
+      ]
+    }
+  },
+  "402": {
+    "type": "Feature",
+    "properties": {
+      "name": "Fulton St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "2-3",
+      "objectid": "402",
+      "notes": "2-all times, 3-all times exc nights"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -74.00657099970202,
+        40.70941599925865
+      ]
+    }
+  },
+  "410": {
+    "type": "Feature",
+    "properties": {
+      "name": "Canal St - Holland Tunnel",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "A-C-E",
+      "objectid": "410",
+      "notes": "A,E-all times, C-all times exc nights"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -74.0052290023424,
+        40.72082400007119
+      ]
+    }
+  },
+  "2": {
+    "type": "Feature",
+    "properties": {
+      "name": "Canal St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "4-6-6 Express",
+      "objectid": "2",
+      "notes": "4 nights, 6-all times, 6 Express-weekdays AM southbound, PM northbound"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -74.00019299927328,
+        40.71880300107709
+      ]
+    }
+  },
+  "90": {
+    "type": "Feature",
+    "properties": {
+      "name": "Canal St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "1-2",
+      "objectid": "90",
+      "notes": "1-all times, 2-nights"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -74.0062770001748,
+        40.72285399778783
+      ]
+    }
+  },
+  "419": {
+    "type": "Feature",
+    "properties": {
+      "name": "Bowling Green",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "4-5",
+      "objectid": "419",
+      "notes": "4-all times, 5-all times exc nights"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -74.01400799803432,
+        40.70491399928076
+      ]
+    }
+  },
+  "31": {
+    "type": "Feature",
+    "properties": {
+      "name": "Grand Central - 42nd St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "4-5-6-6 Express",
+      "objectid": "31",
+      "notes": "4,6-all times, 5-all times exc nights, 6 Express-weekdays AM southbound, PM northbound"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.9767132992584,
+        40.75180742981634
+      ]
+    }
+  },
+  "142": {
+    "type": "Feature",
+    "properties": {
+      "name": "5th Ave - 53rd St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "E-M",
+      "objectid": "142",
+      "notes": "E-all times, M-weekdays and evenings"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.9752485052734,
+        40.76008683231326
+      ]
+    }
+  },
+  "147": {
+    "type": "Feature",
+    "properties": {
+      "name": "Times Sq - 42nd St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "S",
+      "objectid": "147",
+      "notes": "S to Grand Central-all times exc nights, closed nights-use 7"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.98622899953202,
+        40.755983000570076
+      ]
+    }
+  },
+  "222": {
+    "type": "Feature",
+    "properties": {
+      "name": "Sutter Ave - Rutland Road",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "3-4",
+      "objectid": "222",
+      "notes": "4-nights, 3-all other times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.92252118536001,
+        40.66476678877493
+      ]
+    }
+  },
+  "317": {
+    "type": "Feature",
+    "properties": {
+      "name": "Bay Ridge - 95th St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "R",
+      "objectid": "317",
+      "notes": "R-all times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -74.03087600085765,
+        40.61662166725951
+      ]
+    }
+  },
+  "247": {
+    "type": "Feature",
+    "properties": {
+      "name": "Jamaica Ctr - Parsons / Archer",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "E-J-Z",
+      "objectid": "247",
+      "notes": "E,J-all times, Z-rush hours AM westbound, PM eastbound"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.80109632298924,
+        40.70206737621188
+      ]
+    }
+  },
+  "280": {
+    "type": "Feature",
+    "properties": {
+      "name": "Wakefield - 241st St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "2",
+      "objectid": "280",
+      "notes": "2-all times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.8506199987954,
+        40.903125000541245
+      ]
+    }
+  },
+  "25": {
+    "type": "Feature",
+    "properties": {
+      "name": "Flushing - Main St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "7-7 Express",
+      "objectid": "25",
+      "notes": "7-all times, 7 Express-rush hours AM westbound, PM eastbound"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.83003000262508,
+        40.75959999915012
+      ]
+    }
+  },
+  "151": {
+    "type": "Feature",
+    "properties": {
+      "name": "Bedford Ave",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "L",
+      "objectid": "151",
+      "notes": "L-all times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.95666499806525,
+        40.71717399858899
+      ]
+    }
+  },
+  "189": {
+    "type": "Feature",
+    "properties": {
+      "name": "103rd St - Corona Plaza",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "7",
+      "objectid": "189",
+      "notes": "7-all times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.86269999830412,
+        40.749865000555545
+      ]
+    }
+  },
+  "133": {
+    "type": "Feature",
+    "properties": {
+      "name": "Brooklyn College - Flatbush Ave",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "2-5",
+      "objectid": "133",
+      "notes": "2-all times, 5-weekdays"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.94754120734406,
+        40.63284240700742
+      ]
+    }
+  },
+  "368": {
+    "type": "Feature",
+    "properties": {
+      "name": "Jay St - MetroTech",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "A-C-F",
+      "objectid": "368",
+      "notes": "A,F-all times, C-all times exc nights"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.98721815267317,
+        40.692470636847084
+      ]
+    }
+  },
+  "242": {
+    "type": "Feature",
+    "properties": {
+      "name": "Howard Beach - JFK Airport",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "A",
+      "objectid": "242",
+      "notes": "A-all times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.83030100071032,
+        40.66047600004959
+      ]
+    }
+  },
+  "446": {
+    "type": "Feature",
+    "properties": {
+      "name": "Clark St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "2-3",
+      "objectid": "446",
+      "notes": "2-all times, 3-all times exc nights"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.99308599821961,
+        40.69746599996469
+      ]
+    }
+  },
+  "307": {
+    "type": "Feature",
+    "properties": {
+      "name": "Queens Plz",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "E-M-R",
+      "objectid": "307",
+      "notes": "E-all times, M-weekdays and evenings, R-all times exc nights"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.93713823965695,
+        40.74891771986323
+      ]
+    }
+  },
+  "103": {
+    "type": "Feature",
+    "properties": {
+      "name": "Queensboro Plz",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "7-7 Express-N-W",
+      "objectid": "103",
+      "notes": "7,N-all times, 7 Express-rush hours AM westbound, PM eastbound, W part time"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.9401635351909,
+        40.750635651014804
+      ]
+    }
+  },
+  "127": {
+    "type": "Feature",
+    "properties": {
+      "name": "Nostrand Ave",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "A-C",
+      "objectid": "127",
+      "notes": "A-all times, C-all times exc nights"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.95042600099683,
+        40.68043800006226
+      ]
+    }
+  },
+  "194": {
+    "type": "Feature",
+    "properties": {
+      "name": "Atlantic Ave",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "L",
+      "objectid": "194",
+      "notes": "L-all times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.9030969995401,
+        40.67534466640805
+      ]
+    }
+  },
+  "346": {
+    "type": "Feature",
+    "properties": {
+      "name": "21st St - Queensbridge",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "F",
+      "objectid": "346",
+      "notes": "F-all times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.94193761457447,
+        40.75373927087553
+      ]
+    }
+  },
+  "406": {
+    "type": "Feature",
+    "properties": {
+      "name": "Borough Hall",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "2-3",
+      "objectid": "406",
+      "notes": "2-all times, 3-all times exc nights"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.98999799960687,
+        40.693218999611084
+      ]
+    }
+  },
+  "24": {
+    "type": "Feature",
+    "properties": {
+      "name": "Junction Blvd",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "7-7 Express",
+      "objectid": "24",
+      "notes": "7-all times, 7 Express-rush hours AM westbound, PM eastbound"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.86952700103515,
+        40.74914499948836
+      ]
+    }
+  },
+  "155": {
+    "type": "Feature",
+    "properties": {
+      "name": "39th Ave",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "N-W",
+      "objectid": "155",
+      "notes": "N-all times, W part time"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.93285137679598,
+        40.75276306140845
+      ]
+    }
+  },
+  "91": {
+    "type": "Feature",
+    "properties": {
+      "name": "Middletown Rd",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "6-6 Express",
+      "objectid": "91",
+      "notes": "6 Express-weekdays AM southbound, PM northbound, 6-all other times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.83632199755944,
+        40.84386300128381
+      ]
+    }
+  },
+  "244": {
+    "type": "Feature",
+    "properties": {
+      "name": "Briarwood - Van Wyck Blvd",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "E-F",
+      "objectid": "244",
+      "notes": "E-evenings, weekends, nights, F-all times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.82069263637443,
+        40.70916181536946
+      ]
+    }
+  },
+  "79": {
+    "type": "Feature",
+    "properties": {
+      "name": "Broadway",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "N-W",
+      "objectid": "79",
+      "notes": "N-all times, W part time"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.92582299919906,
+        40.761431998800546
+      ]
+    }
+  },
+  "279": {
+    "type": "Feature",
+    "properties": {
+      "name": "Jamaica - 179th St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "F",
+      "objectid": "279",
+      "notes": "F-all times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.78381700176453,
+        40.712645666744045
+      ]
+    }
+  },
+  "236": {
+    "type": "Feature",
+    "properties": {
+      "name": "52nd St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "7",
+      "objectid": "236",
+      "notes": "7-all times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.91254899891254,
+        40.744149001021576
+      ]
+    }
+  },
+  "190": {
+    "type": "Feature",
+    "properties": {
+      "name": "111th St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "7",
+      "objectid": "190",
+      "notes": "7-all times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.85533399834884,
+        40.75172999941711
+      ]
+    }
+  },
+  "46": {
+    "type": "Feature",
+    "properties": {
+      "name": "Van Siclen Ave",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "3-4",
+      "objectid": "46",
+      "notes": "4-nights, 3-all other times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.88940491730106,
+        40.665517963059635
+      ]
+    }
+  },
+  "128": {
+    "type": "Feature",
+    "properties": {
+      "name": "Nevins St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "2-3-4-5",
+      "objectid": "128",
+      "notes": "2,4-all times, 3-all times exc nights, 5-weekdays"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.98040679874578,
+        40.68831058019022
+      ]
+    }
+  },
+  "272": {
+    "type": "Feature",
+    "properties": {
+      "name": "West Farms Sq - E Tremont Av",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "2-5",
+      "objectid": "272",
+      "notes": "2-all times, 5-all times exc nights, skips rush hours AM southbound, PM northbound"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.87996127877184,
+        40.84020763241799
+      ]
+    }
+  },
+  "376": {
+    "type": "Feature",
+    "properties": {
+      "name": "Bergen St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "F-G",
+      "objectid": "376",
+      "notes": "F,G-all times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.99075649573565,
+        40.68611054725977
+      ]
+    }
+  },
+  "352": {
+    "type": "Feature",
+    "properties": {
+      "name": "Roosevelt Island - Main St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "F",
+      "objectid": "352",
+      "notes": "F-all times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.95323499978866,
+        40.75917199967108
+      ]
+    }
+  },
+  "300": {
+    "type": "Feature",
+    "properties": {
+      "name": "Kosciuszko St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "J",
+      "objectid": "300",
+      "notes": "J-all times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.92850899927413,
+        40.69317200129202
+      ]
+    }
+  },
+  "72": {
+    "type": "Feature",
+    "properties": {
+      "name": "Lorimer St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "L",
+      "objectid": "72",
+      "notes": "L-all times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.95024799996972,
+        40.71407200064717
+      ]
+    }
+  },
+  "36": {
+    "type": "Feature",
+    "properties": {
+      "name": "Union St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "D-N-R",
+      "objectid": "36",
+      "notes": "D,N-nights, R-all other times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.98310999909673,
+        40.67731566735096
+      ]
+    }
+  },
+  "293": {
+    "type": "Feature",
+    "properties": {
+      "name": "33rd St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "7",
+      "objectid": "293",
+      "notes": "7-all times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.93099699953838,
+        40.74458699983993
+      ]
+    }
+  },
+  "393": {
+    "type": "Feature",
+    "properties": {
+      "name": "25th St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "D-N-R",
+      "objectid": "393",
+      "notes": "D,N-nights, R-all other times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.99809099974297,
+        40.66039666692321
+      ]
+    }
+  },
+  "63": {
+    "type": "Feature",
+    "properties": {
+      "name": "Jamaica - Van Wyck",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "E",
+      "objectid": "63",
+      "notes": "E-all times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.81701287135405,
+        40.70289855287313
+      ]
+    }
+  },
+  "275": {
+    "type": "Feature",
+    "properties": {
+      "name": "Norwood - 205th St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "D",
+      "objectid": "275",
+      "notes": "D-all times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.87885499918691,
+        40.87481100011182
+      ]
+    }
+  },
+  "27": {
+    "type": "Feature",
+    "properties": {
+      "name": "3rd Ave - 138th St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "6-6 Express",
+      "objectid": "27",
+      "notes": "6-all times, 6 Express-weekdays AM southbound, PM northbound"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.92613800014134,
+        40.81047600117261
+      ]
+    }
+  },
+  "277": {
+    "type": "Feature",
+    "properties": {
+      "name": "Baychester Ave",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "5",
+      "objectid": "277",
+      "notes": "5-all times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.83859099802153,
+        40.87866300037311
+      ]
+    }
+  },
+  "388": {
+    "type": "Feature",
+    "properties": {
+      "name": "45th St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "N-R",
+      "objectid": "388",
+      "notes": "N-nights, R-all times, skips nights northbound"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -74.01000600074939,
+        40.648938666612814
+      ]
+    }
+  },
+  "394": {
+    "type": "Feature",
+    "properties": {
+      "name": "Carroll St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "F-G",
+      "objectid": "394",
+      "notes": "F,G-all times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.99494697998841,
+        40.68027335170176
+      ]
+    }
+  },
+  "290": {
+    "type": "Feature",
+    "properties": {
+      "name": "3rd Ave - 149th St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "2-5",
+      "objectid": "290",
+      "notes": "2-all times, 5-all times exc nights"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.91779152760981,
+        40.816029252510006
+      ]
+    }
+  },
+  "374": {
+    "type": "Feature",
+    "properties": {
+      "name": "4th Av - 9th St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "F-G",
+      "objectid": "374",
+      "notes": "F,G-all times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.98977899938897,
+        40.67027166728493
+      ]
+    }
+  },
+  "389": {
+    "type": "Feature",
+    "properties": {
+      "name": "36th St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "D-N-R",
+      "objectid": "389",
+      "notes": "D,N,R-all times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -74.00354899951809,
+        40.65514366633887
+      ]
+    }
+  },
+  "240": {
+    "type": "Feature",
+    "properties": {
+      "name": "82nd St - Jackson Hts",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "7",
+      "objectid": "240",
+      "notes": "7-all times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.88369700071884,
+        40.747658999559135
+      ]
+    }
+  },
+  "328": {
+    "type": "Feature",
+    "properties": {
+      "name": "Sheepshead Bay",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "B-Q",
+      "objectid": "328",
+      "notes": "B-weekdays and evenings, Q-all times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.95405791257907,
+        40.58654754707536
+      ]
+    }
+  },
+  "47": {
+    "type": "Feature",
+    "properties": {
+      "name": "149th St - Grand Concourse",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "4",
+      "objectid": "47",
+      "notes": "4-all times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.9273847542618,
+        40.81830344372315
+      ]
+    }
+  },
+  "377": {
+    "type": "Feature",
+    "properties": {
+      "name": "Jay St - MetroTech",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "N-R",
+      "objectid": "377",
+      "notes": "N-nights, R-all other times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.98605667854612,
+        40.69225539645323
+      ]
+    }
+  },
+  "382": {
+    "type": "Feature",
+    "properties": {
+      "name": "4th Av - 9th St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "D-N-R",
+      "objectid": "382",
+      "notes": "D,N-nights, R-all other times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.98830199974512,
+        40.670846666842756
+      ]
+    }
+  },
+  "318": {
+    "type": "Feature",
+    "properties": {
+      "name": "86th St",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "R",
+      "objectid": "318",
+      "notes": "R-all times"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -74.0283979999864,
+        40.62268666715025
+      ]
+    }
+  },
+  "232": {
+    "type": "Feature",
+    "properties": {
+      "name": "Woodhaven Blvd - Queens Mall",
+      "url": "http://web.mta.info/nyct/service/",
+      "line": "E-M-R",
+      "objectid": "232",
+      "notes": "E-nights, R-all other times, M-weekdays and evenings"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -73.86943208612348,
+        40.73309737380972
+      ]
+    }
+  }
+}
