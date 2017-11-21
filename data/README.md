@@ -15,6 +15,8 @@ List of hotel dictionaries with the following attributes:
 * tripadvisor_url
 * amadeus_code
 * tripadvisor_address
+* lat
+* lon
 * tripadvisor_reviews: number of reviews on TripAdvisor
 * tripadvisor_rating: average review score 
 * tripadvisor_price_range: list with upper and lower bound of average standard daily rate, as seen on Trip Advisor
