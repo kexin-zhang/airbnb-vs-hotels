@@ -1,0 +1,33 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+
+html, body, #map {
+	height: 100%;
+}
+
+.menu-button {
+	position: absolute;
+	left: 96%;
+	z-index: 10000;
+}
+
+.menu-button i {
+	color: black;
+	font-size: 2em;
+}
+
+.side-nav {
+	z-index: 100000;
+}
+
+@media screen and (max-width: 991px) {
+
+}
+
+@media screen and (min-width: 992px) {
+	#map {
+		width: calc(100% - 400px);;
+	}
+}
