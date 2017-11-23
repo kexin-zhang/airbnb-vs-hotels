@@ -9,12 +9,10 @@ $(document).ready(function(){
 });
 
 voronoiMap = function(map, points, prices) {
-    var colors = ["#fef0d9", "#fdd49e", "#fdbb84", "#fc8d59", "#e34a33", "#b30000"];
+    var colors = ["#edf8fb", "#ccece6", "#99d8c9", "#66c2a4", "#2ca25f", "#006d2c"];
     var color_scale = d3.scale.quantile()
                         .domain(Object.keys(prices).map(function(d) { return prices[d].difference }))
                         .range(colors);
-
-    console.log(color_scale.quantiles());
 
     var voronoi = d3.geom.voronoi()
       .x(function(d) { return d.x; })
@@ -66,16 +64,21 @@ voronoiMap = function(map, points, prices) {
       .attr("d", buildPathFromPoint)
       .attr("stroke", "black")
       .attr("fill", function(d) {
-        x = prices[d.cell.point.location_cell];
+        x = prices[d.location_cell];
         if (x) return color_scale(x.difference);
         return "none";
       })
-      .attr("opacity", .5);
+      .attr("opacity", .4)
+      .attr('style', 'pointer-events:visiblePainted;')
+      .on("click", updatePanel);
 
     // svgPoints.append("circle")
     //   .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
-    //   .style('fill', 'red')
-    //   .attr("r", 2);
+    //   .style('fill', function(d) {
+    //     x = prices[d.cell.point.location_cell];
+    //     return color_scale(x.difference);
+    //   })
+    //   .attr("r", 5);
     }
 
     draw();
@@ -109,3 +112,81 @@ queue().defer(d3.csv, "js/subways_points.csv")
             });
             voronoiMap(map, points, price_data);
        });
+
+function updatePanel(d) {
+    document.getElementById("subway-name").textContent = d.name;
+    document.getElementById("price-hist-title").style.display = "";
+
+    d3.csv("js/hotels_aggregated2.csv", function(data) {
+        data = data.filter(function(curr) {
+            return d.location_cell == +curr.location_cell;
+        });
+        createPriceHist(data);
+    });
+}
+
+function createPriceHist(data) {
+    d3.select("#prices-hist-svg").remove();
+
+    data = data.map(function(d) {
+        return +d.total_amount;
+    });
+
+    var margin = {
+        top: 10,
+        left: 10,
+        right: 10,
+        bottom: 30
+    };
+
+    var width = 350 - margin.left - margin.right;
+    var height = 250 - margin.top - margin.bottom;
+
+    var svg = d3.select("#prices-hist")
+                .append("svg")
+                .attr("id", "prices-hist-svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom);
+
+    var g = svg.append("g")
+               .attr("transform", "translate(" + margin.left + "," + margin.top + ")"); 
+
+
+    var x = d3.scale.linear()
+              .domain([d3.min(data), d3.max(data)])
+              .range([0, width]);
+
+    var hist_data = d3.layout.histogram()
+                      .bins(x.ticks(6))
+                      (data);
+
+    var yMax = d3.max(hist_data, function(d) { 
+        return d.length; 
+    });
+
+    var y = d3.scale.linear()
+              .domain([0, yMax])
+              .range([height, 0]);
+
+    var xAxis = d3.svg.axis().scale(x).orient('bottom');
+
+    var bars = g.selectAll(".bar")
+                  .data(hist_data)
+                  .enter()
+                  .append("g")
+                  .attr("class", "bar")
+                  .attr("transform", function(d) {
+                    return "translate(" + x(d.x) + "," + y(d.y) + ")"
+                  });
+
+    bars.append("rect")
+        .attr("x", 1)
+        .attr("width", (x(hist_data[0].dx) - x(0)) - 1)
+        .attr("height", function(d) { console.log(y(d.y)); return height - y(d.y); })
+        .attr("fill", "#2980b9");
+
+    g.append("g")
+       .attr("class", "x axis")
+       .attr("transform", "translate(0," + height + ")")
+       .call(xAxis);
+}

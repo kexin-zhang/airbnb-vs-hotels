@@ -22,6 +22,17 @@ html, body, #map {
 	z-index: 100000;
 }
 
+.axis path, .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+svg {
+	font: 11px sans-serif;
+}
+
+
 @media screen and (max-width: 991px) {
 
 }
