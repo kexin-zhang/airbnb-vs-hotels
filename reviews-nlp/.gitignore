@@ -1,0 +1,8 @@
+CoreNLP/
+*.jar
+*.class
+*.iml
+ReviewSentiment/out
+ReviewSentiment/.idea
+ReviewSentiment/src/META-INF
+ReviewSentiment/datasets

@@ -1,0 +1,38 @@
+4|1|0.601|The food was great
+5|1|0.637|The food was great ,
+2|-1|0.628|very rude
+3|-1|0.719|was very rude
+5|-1|0.657|the staff was very rude
+11|-1|0.568|The food was great , but the staff was very rude
+12|-1|0.537|The food was great , but the staff was very rude .
+=<sentence>=
+=<sentence>=
+===<doc>===
+3|1|0.640|Great location ,
+8|1|0.626|Great location , conveient access to the subway
+9|1|0.712|Great location , conveient access to the subway .
+=<sentence>=
+===<doc>===
+3|-1|0.608|hated the room
+4|-1|0.636|hated the room .
+5|-1|0.651|I hated the room .
+=<sentence>=
+2|-1|0.632|is not
+2|1|0.731|good hotel
+3|1|0.696|a good hotel
+5|-1|0.599|is not a good hotel
+6|-1|0.678|is not a good hotel .
+7|-1|0.662|This is not a good hotel .
+=<sentence>=
+===<doc>===
+8|-1|0.565|that the bed was dusty and smelled bad
+10|-1|0.636|found out that the bed was dusty and smelled bad
+11|-1|0.552|we found out that the bed was dusty and smelled bad
+19|-1|0.557|The room seemed nice at first , but we found out that the bed was dusty and smelled bad
+20|-1|0.564|The room seemed nice at first , but we found out that the bed was dusty and smelled bad .
+=<sentence>=
+===<doc>===
+13|-1|0.558|Perfect for seeing all the sights in the city , but very expensive
+14|-1|0.597|Perfect for seeing all the sights in the city , but very expensive .
+=<sentence>=
+===<doc>===
