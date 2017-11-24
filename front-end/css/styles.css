@@ -28,13 +28,22 @@ html, body, #map {
   shape-rendering: crispEdges;
 }
 
-svg {
-	font: 11px sans-serif;
+.clicked {
+	stroke-width: 3px;
+	opacity: .7;
 }
 
+.hovered {
+	stroke-width: 2px;
+	opacity: .6;
+}
 
-@media screen and (max-width: 991px) {
+.side-subheader {
+	font-weight: bold;
+}
 
+svg {
+	font: 11px sans-serif;
 }
 
 @media screen and (min-width: 992px) {

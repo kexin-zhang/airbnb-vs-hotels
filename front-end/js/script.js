@@ -8,10 +8,10 @@ $(document).ready(function(){
     });
 });
 
-voronoiMap = function(map, points, prices) {
+voronoiMap = function(map, points) {
     var colors = ["#edf8fb", "#ccece6", "#99d8c9", "#66c2a4", "#2ca25f", "#006d2c"];
     var color_scale = d3.scale.quantile()
-                        .domain(Object.keys(prices).map(function(d) { return prices[d].difference }))
+                        .domain(Object.keys(prices_aggregated).map(function(d) { return prices_aggregated[d].difference }))
                         .range(colors);
 
     var draw = function() {
@@ -67,13 +67,19 @@ voronoiMap = function(map, points, prices) {
       .attr("d", buildPathFromPoint)
       .attr("stroke", "black")
       .attr("fill", function(d) {
-        x = prices[d.location_cell];
+        x = prices_aggregated[d.location_cell];
         if (x) return color_scale(x.difference);
         return "none";
       })
       .attr("opacity", .4)
       .attr('style', 'pointer-events:visiblePainted;')
-      .on("click", updatePanel);
+      .on("click", updatePanel)
+      .on("mouseenter", function(d) {
+        d3.select(this).classed("hovered", true);
+      })
+      .on("mouseleave", function(d) {
+        d3.select(this).classed("hovered", false);
+      });
 
     // svgPoints.append("circle")
     //   .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
@@ -99,6 +105,8 @@ var tiles = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?ac
 });
 tiles.addTo(map);
 
+prices_aggregated = {}
+
 queue().defer(d3.csv, "js/subways_points.csv")
        .defer(d3.csv, "js/prices_aggregated.csv")
        .await(function(error, points, prices) {
@@ -113,12 +121,24 @@ queue().defer(d3.csv, "js/subways_points.csv")
                     "difference": d.hotel_avg - d.airbnb_avg
                 };
             });
-            voronoiMap(map, points, price_data);
+            prices_aggregated = price_data;
+            voronoiMap(map, points);
        });
 
 function updatePanel(d) {
     document.getElementById("subway-name").textContent = d.name;
     document.getElementById("price-hist-title").style.display = "";
+
+    var diff = prices_aggregated[d.location_cell].difference.toFixed(2);
+    if (diff > 0) {
+      var priceStr = `Hotel rooms are on average $${diff} more expensive per night than Airbnbs.`;
+    } else {
+      var priceStr = `Hotel rooms are on average $${(-1 * diff)} less expensive per night than Airbnbs.`;
+    }
+    document.getElementById("difference-text").textContent = priceStr;
+
+    d3.select(".clicked").classed("clicked", false);
+    d3.select(this).classed("clicked", true);
 
     d3.csv("js/hotels_aggregated2.csv", function(data) {
         data = data.filter(function(curr) {
@@ -143,7 +163,7 @@ function createPriceHist(data) {
     };
 
     var width = 350 - margin.left - margin.right;
-    var height = 250 - margin.top - margin.bottom;
+    var height = 220 - margin.top - margin.bottom;
 
     var svg = d3.select("#prices-hist")
                 .append("svg")
