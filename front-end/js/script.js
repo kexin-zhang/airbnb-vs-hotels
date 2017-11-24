@@ -14,11 +14,13 @@ voronoiMap = function(map, points, prices) {
                         .domain(Object.keys(prices).map(function(d) { return prices[d].difference }))
                         .range(colors);
 
-    var voronoi = d3.geom.voronoi()
-      .x(function(d) { return d.x; })
-      .y(function(d) { return d.y; });
-
     var draw = function() {
+
+    var voronoi = d3.distanceLimitedVoronoi()
+      .x(function(d) { return d.x; })
+      .y(function(d) { return d.y; })
+      .limit(80 * map.getZoomScale(map.getZoom(), 13)) // scale this according to the current map scale
+
     d3.select('#overlay').remove();
 
     var bounds = map.getBounds(),
@@ -26,6 +28,8 @@ voronoiMap = function(map, points, prices) {
         bottomRight = map.latLngToLayerPoint(bounds.getSouthEast()),
         drawLimit = bounds.pad(0.4);
 
+    // filter out points that are outside of the current map boundaries
+    // convert lat long to appropriate x, y coordinates for leaflet
     filteredPoints = points.filter(function(d) {
       var latlng = new L.LatLng(+d.lat, +d.lon);
       if (!drawLimit.contains(latlng)) { return false };
@@ -47,6 +51,7 @@ voronoiMap = function(map, points, prices) {
       .style("margin-top", topLeft.y + "px");
 
     var g = svg.append("g")
+      .attr("id", "overlay-g")
       .attr("transform", "translate(" + (-topLeft.x) + "," + (-topLeft.y) + ")");
 
     var svgPoints = g.attr("class", "points")
@@ -56,7 +61,11 @@ voronoiMap = function(map, points, prices) {
         .attr("class", "point");
 
     var buildPathFromPoint = function(point) {
-      return "M" + point.cell.join("L") + "Z";
+      //return "M" + point.cell.join("L") + "Z";
+      if (point.cell) {
+        return point.cell.path;
+      }
+      return undefined;
     }
 
     svgPoints.append("path")
@@ -64,27 +73,30 @@ voronoiMap = function(map, points, prices) {
       .attr("d", buildPathFromPoint)
       .attr("stroke", "black")
       .attr("fill", function(d) {
-        x = prices[d.location_cell];
-        if (x) return color_scale(x.difference);
+        // x = prices[d.location_cell];
+        // if (x) return color_scale(x.difference);
+        // return "none";
         return "none";
       })
       .attr("opacity", .4)
       .attr('style', 'pointer-events:visiblePainted;')
       .on("click", updatePanel);
 
-    // svgPoints.append("circle")
-    //   .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
-    //   .style('fill', function(d) {
-    //     x = prices[d.cell.point.location_cell];
-    //     return color_scale(x.difference);
-    //   })
-    //   .attr("r", 5);
+    svgPoints.append("circle")
+      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
+      .style('fill', function(d) {
+        // x = prices[d.cell.point.location_cell];
+        // return color_scale(x.difference);
+        return "red";
+      })
+      .attr("r", 2);
     }
 
     draw();
-    map.on('viewreset moveend', draw);
+    map.on('viewreset moveend', draw); // redraw when map is dragged or zoomed in
 }
 
+// init leaflet map
 var map = L.map('map');
 map.setView([40.7589, -73.9851], 12.5);
 
@@ -96,7 +108,8 @@ var tiles = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?ac
 });
 tiles.addTo(map);
 
-queue().defer(d3.csv, "js/subways_points.csv")
+// load coordinates and prices, draw svg on top of leaflet tiles
+queue().defer(d3.json, "js/hotels_coordinates.geojson")
        .defer(d3.csv, "js/prices_aggregated.csv")
        .await(function(error, points, prices) {
             if (error) throw error;
@@ -113,6 +126,30 @@ queue().defer(d3.csv, "js/subways_points.csv")
             voronoiMap(map, points, price_data);
        });
 
+// function for drawing hotel coordinates
+function drawHotels() {
+    d3.json("js/hotels_coordinates.geojson", function(data) {
+        data.forEach(function(d) {
+            var latlng = new L.LatLng(+d.lat, +d.lon);
+            var point = map.latLngToLayerPoint(latlng);
+            d.x = point.x;
+            d.y = point.y;
+        });
+
+        var svg = d3.select("#overlay-g");
+
+        svg.selectAll('.hotels')
+           .data(data)
+           .enter()
+           .append("circle")
+           .attr("class", "hotels")
+           .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
+           .style('fill', "red")
+           .attr("r", 5);
+    });
+}
+
+// function for updating the sidebar when a region is clicked
 function updatePanel(d) {
     document.getElementById("subway-name").textContent = d.name;
     document.getElementById("price-hist-title").style.display = "";
@@ -125,6 +162,7 @@ function updatePanel(d) {
     });
 }
 
+// draw price distribution histogram
 function createPriceHist(data) {
     d3.select("#prices-hist-svg").remove();
 
