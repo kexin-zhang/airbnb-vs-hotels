@@ -14,11 +14,13 @@ voronoiMap = function(map, points, prices) {
                         .domain(Object.keys(prices).map(function(d) { return prices[d].difference }))
                         .range(colors);
 
-    var voronoi = d3.geom.voronoi()
-      .x(function(d) { return d.x; })
-      .y(function(d) { return d.y; });
-
     var draw = function() {
+    
+    var voronoi = d3.distanceLimitedVoronoi()
+      .x(function(d) { return d.x; })
+      .y(function(d) { return d.y; })
+      .limit(300 * map.getZoomScale(map.getZoom(), 13));
+
     d3.select('#overlay').remove();
 
     var bounds = map.getBounds(),
@@ -56,7 +58,8 @@ voronoiMap = function(map, points, prices) {
         .attr("class", "point");
 
     var buildPathFromPoint = function(point) {
-      return "M" + point.cell.join("L") + "Z";
+      //return "M" + point.cell.join("L") + "Z";
+      return point.cell.path;
     }
 
     svgPoints.append("path")
@@ -182,7 +185,7 @@ function createPriceHist(data) {
     bars.append("rect")
         .attr("x", 1)
         .attr("width", (x(hist_data[0].dx) - x(0)) - 1)
-        .attr("height", function(d) { console.log(y(d.y)); return height - y(d.y); })
+        .attr("height", function(d) { return height - y(d.y); })
         .attr("fill", "#2980b9");
 
     g.append("g")
