@@ -9,7 +9,7 @@ $(document).ready(function(){
 });
 
 voronoiMap = function(map, points) {
-    var colors = ["#edf8fb", "#ccece6", "#99d8c9", "#66c2a4", "#2ca25f", "#006d2c"];
+    var colors = ["#f0f9e8", "#ccebc5", "#a8ddb5", "#7bccc4", "#43a2ca", "#0868ac"];
     var color_scale = d3.scale.quantile()
                         .domain(Object.keys(prices_aggregated).map(function(d) { return prices_aggregated[d].difference }))
                         .range(colors);
@@ -19,7 +19,7 @@ voronoiMap = function(map, points) {
     var voronoi = d3.distanceLimitedVoronoi()
       .x(function(d) { return d.x; })
       .y(function(d) { return d.y; })
-      .limit(300 * map.getZoomScale(map.getZoom(), 13));
+      .limit(170 * map.getZoomScale(map.getZoom(), 13));
 
     d3.select('#overlay').remove();
 
@@ -71,7 +71,7 @@ voronoiMap = function(map, points) {
         if (x) return color_scale(x.difference);
         return "none";
       })
-      .attr("opacity", .4)
+      .attr("opacity", .5)
       .attr('style', 'pointer-events:visiblePainted;')
       .on("click", updatePanel)
       .on("mouseenter", function(d) {
@@ -81,13 +81,14 @@ voronoiMap = function(map, points) {
         d3.select(this).classed("hovered", false);
       });
 
-    // svgPoints.append("circle")
-    //   .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
-    //   .style('fill', function(d) {
-    //     x = prices[d.cell.point.location_cell];
-    //     return color_scale(x.difference);
-    //   })
-    //   .attr("r", 5);
+    svgPoints.append("circle")
+      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
+      .style('fill', function(d) {
+        x = prices_aggregated[d.cell.point.location_cell];
+        return color_scale(x.difference);
+      })
+      //.style("stroke", "black")
+      .attr("r", 4);
     }
 
     draw();
