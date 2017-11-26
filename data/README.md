@@ -2,13 +2,13 @@
 
 Data was obtained by merging collected data from TripAdvisor and the AmadeusAPI.
 
-`hotel_identifiers.csv`: Basic identifying information for the 274 hotels in our dataset.
+`hotel_identifiers.csv`: Basic identifying information for the 265 hotels in our dataset.
 * tripadvisor_name: name displayed on TripAdvisor
 * amadeus_name: name displayed on Amadeus
 * tripadvisor_url: acts as a unique identifier to associate hotels with TripAdvisor information
 * amadeus_code: property code from Amadeus. Also acts as a unique identifier
 
-`hotel_features.json`: More features about each of the hotels
+`hotel_features_tagged.json`: More features about each of the hotels
 List of hotel dictionaries with the following attributes:
 * tripadvisor_name
 * amadeus_name
@@ -26,11 +26,17 @@ List of hotel dictionaries with the following attributes:
 * amadeus_address
 * amadeus_amenities: list of hotel amenities from amadeus
 * amadeus_awards: list of awards that the hotel has won
+* location_cell: the voronoi cell that this hotel belongs to
 
 `hotels<check in date>_to_<check out date>.json`: Pricing information for each hotel for the check in and check out date. All data was scraped on 2017-11-16. 
 List of hotel dictionaries with the following attributes:
 * rooms: list of dictionaries with information about the room type and the price of the room
 * property_code: this corresponds with the amadeus_code field in the other files
+
+`location_cell_centers.csv`: Coordinates for the center of voronoi cells
+* location_cell: location cell ID
+* lat
+* lon
 
 `reviews<x>.jl` TripAdvisor reviews for each hotel (on Dropbox)
 Reviews are in json lines format - each line in the file is a JSON with the following review information
