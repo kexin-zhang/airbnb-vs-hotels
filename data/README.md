@@ -49,7 +49,7 @@ List of hotel dictionaries with the following attributes:
 * longitude
 * summary
 * state
-* location_cell: ID of the location cell that the listing belongs to, this is the ID of the closest cluster center, or None if the closest center is over 1 km away. 
+* location_cell: ID of the location cell that the listing belongs to, this is the ID of the closest cluster center, or -1 if the closest center is over 1 km away. 
 
 `reviews<x>.jl` TripAdvisor reviews for each hotel (on Dropbox)
 Reviews are in json lines format - each line in the file is a JSON with the following review information
