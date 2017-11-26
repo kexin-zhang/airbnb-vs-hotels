@@ -38,6 +38,19 @@ List of hotel dictionaries with the following attributes:
 * lat
 * lon
 
+`listings_tagged.csv`: Airbnb listings information (on Dropbox)
+* id
+* name
+* listing_url
+* price
+* beds
+* amenities
+* latitude 
+* longitude
+* summary
+* state
+* location_cell: ID of the location cell that the listing belongs to, this is the ID of the closest cluster center, or None if the closest center is over 1 km away. 
+
 `reviews<x>.jl` TripAdvisor reviews for each hotel (on Dropbox)
 Reviews are in json lines format - each line in the file is a JSON with the following review information
 * review_username: username of TripAdvisor reviewer
