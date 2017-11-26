@@ -46,6 +46,18 @@ svg {
 	font: 11px sans-serif;
 }
 
+.legend {
+    line-height: 18px;
+    color: #555;
+}
+.legend i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.7;
+}
+
 @media screen and (min-width: 992px) {
 	#map {
 		width: calc(100% - 400px);;

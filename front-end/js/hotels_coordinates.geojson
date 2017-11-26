@@ -915,11 +915,6 @@
     "name": "Best Western JFK Airport Hotel"
   }, 
   {
-    "lat": "41.0633", 
-    "lon": "-73.84412", 
-    "name": "Courtyard by Marriott Tarrytown Westchester County"
-  }, 
-  {
     "lat": "40.76355", 
     "lon": "-73.83101", 
     "name": "Marco LaGuardia Hotel by Lexington"
@@ -953,11 +948,6 @@
     "lat": "40.75938", 
     "lon": "-73.83344", 
     "name": "Best Western Queens Court Hotel"
-  }, 
-  {
-    "lat": "41.03288", 
-    "lon": "-73.76729", 
-    "name": "The Ritz-Carlton New York, Westchester"
   }, 
   {
     "lat": "40.70224", 
@@ -1015,11 +1005,6 @@
     "name": "Boro Hotel"
   }, 
   {
-    "lat": "40.97164", 
-    "lon": "-73.8785", 
-    "name": "Hampton Inn & Suites Yonkers"
-  }, 
-  {
     "lat": "40.84944", 
     "lon": "-73.84269", 
     "name": "Residence Inn By Marriott New York The Bronx at Metro Center Atrium"
@@ -1038,11 +1023,6 @@
     "lat": "40.61305", 
     "lon": "-74.17509", 
     "name": "Hampton Inn & Suites Staten Island"
-  }, 
-  {
-    "lat": "40.77607", 
-    "lon": "-73.55988", 
-    "name": "Viana Hotel & Spa, BW Premier Collection"
   }, 
   {
     "lat": "40.72659", 
@@ -1120,11 +1100,6 @@
     "name": "Hyatt Place Long Island City / New York City"
   }, 
   {
-    "lat": "41.03326", 
-    "lon": "-73.76424", 
-    "name": "Cambria hotel & suites White Plains - Downtown"
-  }, 
-  {
     "lat": "40.7635", 
     "lon": "-73.82844", 
     "name": "The One Boutique Hotel"
@@ -1133,12 +1108,7 @@
     "lat": "40.69437", 
     "lon": "-73.93107", 
     "name": "Hotel RL by Red Lion Brooklyn"
-  }, 
-  {
-    "lat": "40.74948", 
-    "lon": "-73.61923", 
-    "name": "Homewood Suites by Hilton Carle Place - Garden City"
-  }, 
+  },  
   {
     "lat": "40.66746", 
     "lon": "-73.79487", 
@@ -1158,11 +1128,6 @@
     "lat": "40.75163", 
     "lon": "-73.93385", 
     "name": "Quality Inn Long Island City"
-  }, 
-  {
-    "lat": "40.74123", 
-    "lon": "-73.60953", 
-    "name": "Hampton Inn Garden City"
   }, 
   {
     "lat": "40.67784", 
@@ -1253,12 +1218,7 @@
     "lat": "40.65209", 
     "lon": "-74.00529", 
     "name": "Days Inn Brooklyn"
-  }, 
-  {
-    "lat": "40.81299", 
-    "lon": "-73.48519", 
-    "name": "The Inn At Fox Hollow Hotel"
-  }, 
+  },  
   {
     "lat": "40.76135", 
     "lon": "-73.83237", 
@@ -1293,11 +1253,6 @@
     "lat": "40.81814", 
     "lon": "-73.9304", 
     "name": "Holiday Inn Express - Bronx NYC - Stadium Area"
-  }, 
-  {
-    "lat": "40.92781", 
-    "lon": "-73.8533", 
-    "name": "Hyatt Place New York/Yonkers"
   }, 
   {
     "lat": "40.68178", 
