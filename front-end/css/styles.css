@@ -49,6 +49,12 @@ svg {
 .legend {
     line-height: 18px;
     color: #555;
+    background-color: white;
+    border: 2px solid white;
+    border-radius: 10px;
+    font-weight: bold;
+    padding: .6em;
+    cursor: pointer;
 }
 .legend i {
     width: 18px;

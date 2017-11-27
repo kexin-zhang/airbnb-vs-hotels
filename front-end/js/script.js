@@ -13,11 +13,10 @@ var last_selected; // for keeping track of clicked region
 voronoiMap = function(map, points) {
     var colors = ["#f7fcf0", "#e0f3db", "#ccebc5", "#a8ddb5", "#7bccc4", "#4eb3d3", "#2b8cbe", "#08589e"];
     var color_scale = d3.scale.quantile()
-                        .domain(Object.keys(prices_aggregated).map(function(d) { return prices_aggregated[d].difference }))
+                        .domain(Object.keys(prices_aggregated).map(function(d) { return prices_aggregated[d].difference; }))
                         .range(colors);
 
-    var draw = function() {
-      
+    var draw = function() {      
       var voronoi = d3.distanceLimitedVoronoi()
         .x(function(d) { return d.x; })
         .y(function(d) { return d.y; })
@@ -96,23 +95,40 @@ voronoiMap = function(map, points) {
         })
         //.style("stroke", "black")
         .attr("r", 3);
-
     }
+
     draw();
-    map.on('viewreset moveend', draw);
+    map.on('viewreset moveend', draw); // redraw after zoom/drag
 
     // add legend
-    // var legend = L.Control.extend({position: 'bottomright'});
-    // legend.onAdd = function (map) {
-    //     var div = L.DomUtil.create('div', 'info legend');
-    //     div.innerHTML = "test";
-    //     return div;
-    // };
-    // legend.addTo(map);
+    L.Control.Legend = L.Control.extend({
+        onAdd: function(map) {
+            var div = L.DomUtil.create('div', 'info legend');
+            var prev = d3.min(color_scale.domain()).toFixed(2);
+            var values = color_scale.quantiles().concat([d3.max(color_scale.domain())]);
+            values = values.map(function(d) { return d.toFixed(2); });
+
+            div.innerHTML = "Average price difference <br>"
+            for (var i = 0; i < values.length; i++) {
+              div.innerHTML += `<i style="background: ${colors[i]}"></i> \$${prev} to \$${values[i]} <br>`;
+              prev = values[i];
+            }
+
+            return div;
+        },
+    });
+
+    L.control.legend = function(opts) {
+        return new L.Control.Legend(opts);
+    }
+
+    L.control.legend({ position: 'bottomleft' }).addTo(map);
+
 }
 
+// init map
 var map = L.map('map');
-map.setView([40.7589, -73.9851], 12);
+map.setView([40.731922, -73.965616], 12);
 
 var tiles = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
   attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
@@ -123,7 +139,7 @@ tiles.addTo(map);
 
 prices_aggregated = {}
 
-//queue().defer(d3.csv, "js/subways_points.csv")
+// load data and draw svg overlay on top of map
 queue().defer(d3.csv, "js/location_cell_centers.csv")
        .defer(d3.csv, "js/prices_aggregated.csv")
        .await(function(error, points, prices) {
