@@ -1,0 +1,478 @@
+{
+  "/Hotel_Review-g48682-d224599-Reviews-Hilton_Garden_Inn_New_York_Staten_Island-Staten_Island_New_York.html": {
+    "location": {
+      "sum_sentiment": 42,
+      "count": 75
+    },
+    "hospitality": {
+      "sum_sentiment": 241,
+      "count": 748
+    },
+    "room_quality": {
+      "sum_sentiment": -22,
+      "count": 880
+    }
+  },
+  "/Hotel_Review-g60827-d2151848-Reviews-McCarren_Hotel_Pool-Brooklyn_New_York.html": {
+    "location": {
+      "sum_sentiment": 236,
+      "count": 294
+    },
+    "hospitality": {
+      "sum_sentiment": 263,
+      "count": 719
+    },
+    "room_quality": {
+      "sum_sentiment": 2,
+      "count": 912
+    }
+  },
+  "/Hotel_Review-g47369-d4447795-Reviews-Rodeway_Inn_Bronx_Zoo-Bronx_New_York.html": {
+    "location": {
+      "sum_sentiment": -1,
+      "count": 9
+    },
+    "hospitality": {
+      "sum_sentiment": 10,
+      "count": 15
+    },
+    "room_quality": {
+      "sum_sentiment": -7,
+      "count": 76
+    }
+  },
+  "/Hotel_Review-g47369-d12441510-Reviews-Comfort_Inn_Suites_near_Stadium-Bronx_New_York.html": {
+    "location": {
+      "sum_sentiment": -1,
+      "count": 5
+    },
+    "hospitality": {
+      "sum_sentiment": 4,
+      "count": 16
+    },
+    "room_quality": {
+      "sum_sentiment": 5,
+      "count": 14
+    }
+  },
+  "/Hotel_Review-g47369-d99257-Reviews-Ramada_Bronx-Bronx_New_York.html": {
+    "location": {
+      "sum_sentiment": 6,
+      "count": 14
+    },
+    "hospitality": {
+      "sum_sentiment": 67,
+      "count": 151
+    },
+    "room_quality": {
+      "sum_sentiment": 8,
+      "count": 281
+    }
+  },
+  "/Hotel_Review-g60827-d7772856-Reviews-Quality_Inn-Brooklyn_New_York.html": {
+    "location": {
+      "sum_sentiment": -1,
+      "count": 9
+    },
+    "hospitality": {
+      "sum_sentiment": -1,
+      "count": 11
+    },
+    "room_quality": {
+      "sum_sentiment": -12,
+      "count": 20
+    }
+  },
+  "/Hotel_Review-g60827-d2309186-Reviews-The_LOOK_hotel_Red_Hook_an_Ascend_Hotel_Collection_Member-Brooklyn_New_York.html": {
+    "location": {
+      "sum_sentiment": 1,
+      "count": 1
+    },
+    "hospitality": {
+      "sum_sentiment": 0,
+      "count": 2
+    },
+    "room_quality": {
+      "sum_sentiment": -2,
+      "count": 6
+    }
+  },
+  "/Hotel_Review-g47369-d4702280-Reviews-Opera_House_Hotel-Bronx_New_York.html": {
+    "location": {
+      "sum_sentiment": -22,
+      "count": 141
+    },
+    "hospitality": {
+      "sum_sentiment": 156,
+      "count": 299
+    },
+    "room_quality": {
+      "sum_sentiment": 148,
+      "count": 485
+    }
+  },
+  "/Hotel_Review-g60827-d1657771-Reviews-La_Quinta_Inn_Suites_Brooklyn_Downtown-Brooklyn_New_York.html": {
+    "location": {
+      "sum_sentiment": 6,
+      "count": 87
+    },
+    "hospitality": {
+      "sum_sentiment": -1,
+      "count": 131
+    },
+    "room_quality": {
+      "sum_sentiment": -82,
+      "count": 415
+    }
+  },
+  "/Hotel_Review-g48080-d248683-Reviews-Super_8_Long_Island_City_LGA_Hotel-Long_Island_City_Queens_New_York.html": {
+    "location": {
+      "sum_sentiment": 10,
+      "count": 20
+    },
+    "hospitality": {
+      "sum_sentiment": 20,
+      "count": 49
+    },
+    "room_quality": {
+      "sum_sentiment": -31,
+      "count": 118
+    }
+  },
+  "/Hotel_Review-g60827-d295340-Reviews-Days_Inn_Brooklyn-Brooklyn_New_York.html": {
+    "location": {
+      "sum_sentiment": -3,
+      "count": 26
+    },
+    "hospitality": {
+      "sum_sentiment": -36,
+      "count": 75
+    },
+    "room_quality": {
+      "sum_sentiment": -174,
+      "count": 273
+    }
+  },
+  "/Hotel_Review-g48908-d246828-Reviews-The_Inn_At_Fox_Hollow_Hotel-Woodbury_Long_Island_New_York.html": {
+    "location": {
+      "sum_sentiment": 60,
+      "count": 143
+    },
+    "hospitality": {
+      "sum_sentiment": 398,
+      "count": 1054
+    },
+    "room_quality": {
+      "sum_sentiment": 130,
+      "count": 1926
+    }
+  },
+  "/Hotel_Review-g47729-d3411847-Reviews-Asiatic_Hotel_Flushing-Flushing_Queens_New_York.html": {
+    "location": {
+      "sum_sentiment": 14,
+      "count": 39
+    },
+    "hospitality": {
+      "sum_sentiment": 2,
+      "count": 69
+    },
+    "room_quality": {
+      "sum_sentiment": 10,
+      "count": 217
+    }
+  },
+  "/Hotel_Review-g60827-d2556148-Reviews-Wythe_Hotel-Brooklyn_New_York.html": {
+    "location": {
+      "sum_sentiment": 73,
+      "count": 86
+    },
+    "hospitality": {
+      "sum_sentiment": 71,
+      "count": 202
+    },
+    "room_quality": {
+      "sum_sentiment": 37,
+      "count": 403
+    }
+  },
+  "/Hotel_Review-g47289-d99254-Reviews-Best_Western_Queens_Gold_Coast-Bayside_Queens_New_York.html": {
+    "location": {
+      "sum_sentiment": 32,
+      "count": 36
+    },
+    "hospitality": {
+      "sum_sentiment": 44,
+      "count": 99
+    },
+    "room_quality": {
+      "sum_sentiment": -30,
+      "count": 263
+    }
+  },
+  "/Hotel_Review-g47626-d1485917-Reviews-Comfort_Inn_LaGuardia_Airport_83rd_St-East_Elmhurst_Queens_New_York.html": {
+    "location": {
+      "sum_sentiment": 0,
+      "count": 16
+    },
+    "hospitality": {
+      "sum_sentiment": -18,
+      "count": 79
+    },
+    "room_quality": {
+      "sum_sentiment": -33,
+      "count": 201
+    }
+  },
+  "/Hotel_Review-g60827-d636123-Reviews-Best_Western_Plus_Brooklyn_Bay_Hotel-Brooklyn_New_York.html": {
+    "location": {
+      "sum_sentiment": 39,
+      "count": 54
+    },
+    "hospitality": {
+      "sum_sentiment": 29,
+      "count": 123
+    },
+    "room_quality": {
+      "sum_sentiment": -17,
+      "count": 282
+    }
+  },
+  "/Hotel_Review-g47962-d224106-Reviews-Courtyard_by_Marriott_New_York_JFK_Airport-Jamaica_Queens_New_York.html": {
+    "location": {
+      "sum_sentiment": 4,
+      "count": 46
+    },
+    "hospitality": {
+      "sum_sentiment": 216,
+      "count": 586
+    },
+    "room_quality": {
+      "sum_sentiment": 65,
+      "count": 698
+    }
+  },
+  "/Hotel_Review-g47369-d12548946-Reviews-Holiday_Inn_Express_Bronx_NYC_Stadium_Area-Bronx_New_York.html": {
+    "location": {
+      "sum_sentiment": 1,
+      "count": 1
+    },
+    "hospitality": {
+      "sum_sentiment": 0,
+      "count": 2
+    },
+    "room_quality": {
+      "sum_sentiment": -5,
+      "count": 9
+    }
+  },
+  "/Hotel_Review-g48922-d7771212-Reviews-Hyatt_Place_New_York_Yonkers-Yonkers_New_York.html": {
+    "location": {
+      "sum_sentiment": 62,
+      "count": 96
+    },
+    "hospitality": {
+      "sum_sentiment": 128,
+      "count": 243
+    },
+    "room_quality": {
+      "sum_sentiment": 68,
+      "count": 355
+    }
+  },
+  "/Hotel_Review-g60827-d548322-Reviews-Brooklyn_Motor_Inn-Brooklyn_New_York.html": {
+    "location": {
+      "sum_sentiment": -2,
+      "count": 12
+    },
+    "hospitality": {
+      "sum_sentiment": -15,
+      "count": 28
+    },
+    "room_quality": {
+      "sum_sentiment": -53,
+      "count": 92
+    }
+  },
+  "/Hotel_Review-g47962-d574186-Reviews-Days_Inn_Jamaica_Jfk_Airport-Jamaica_Queens_New_York.html": {
+    "location": {
+      "sum_sentiment": -23,
+      "count": 62
+    },
+    "hospitality": {
+      "sum_sentiment": 3,
+      "count": 277
+    },
+    "room_quality": {
+      "sum_sentiment": -161,
+      "count": 664
+    }
+  },
+  "/Hotel_Review-g47962-d225472-Reviews-Radisson_Hotel_JFK_Airport-Jamaica_Queens_New_York.html": {
+    "location": {
+      "sum_sentiment": 10,
+      "count": 43
+    },
+    "hospitality": {
+      "sum_sentiment": -21,
+      "count": 514
+    },
+    "room_quality": {
+      "sum_sentiment": -188,
+      "count": 763
+    }
+  },
+  "/Hotel_Review-g47729-d6563501-Reviews-Ramada_Flushing_Queens-Flushing_Queens_New_York.html": {
+    "location": {
+      "sum_sentiment": 6,
+      "count": 19
+    },
+    "hospitality": {
+      "sum_sentiment": 0,
+      "count": 59
+    },
+    "room_quality": {
+      "sum_sentiment": -4,
+      "count": 144
+    }
+  },
+  "/Hotel_Review-g60827-d6542529-Reviews-Hampton_Inn_Brooklyn_Downtown-Brooklyn_New_York.html": {
+    "location": {
+      "sum_sentiment": 169,
+      "count": 236
+    },
+    "hospitality": {
+      "sum_sentiment": 273,
+      "count": 529
+    },
+    "room_quality": {
+      "sum_sentiment": 258,
+      "count": 680
+    }
+  },
+  "/Hotel_Review-g60827-d650459-Reviews-Hotel_Le_Bleu-Brooklyn_New_York.html": {
+    "location": {
+      "sum_sentiment": 109,
+      "count": 236
+    },
+    "hospitality": {
+      "sum_sentiment": 176,
+      "count": 616
+    },
+    "room_quality": {
+      "sum_sentiment": 181,
+      "count": 1175
+    }
+  },
+  "/Hotel_Review-g60827-d99467-Reviews-BEST_WESTERN_Gregory_Hotel-Brooklyn_New_York.html": {
+    "location": {
+      "sum_sentiment": 74,
+      "count": 98
+    },
+    "hospitality": {
+      "sum_sentiment": 50,
+      "count": 186
+    },
+    "room_quality": {
+      "sum_sentiment": -17,
+      "count": 351
+    }
+  },
+  "/Hotel_Review-g48080-d1500326-Reviews-Best_Western_Plaza_Hotel-Long_Island_City_Queens_New_York.html": {
+    "location": {
+      "sum_sentiment": -7,
+      "count": 234
+    },
+    "hospitality": {
+      "sum_sentiment": 71,
+      "count": 405
+    },
+    "room_quality": {
+      "sum_sentiment": 4,
+      "count": 911
+    }
+  },
+  "/Hotel_Review-g60827-d10728525-Reviews-The_Williamsburg_Hotel-Brooklyn_New_York.html": {
+    "location": {
+      "sum_sentiment": 31,
+      "count": 45
+    },
+    "hospitality": {
+      "sum_sentiment": 59,
+      "count": 83
+    },
+    "room_quality": {
+      "sum_sentiment": 46,
+      "count": 118
+    }
+  },
+  "/Hotel_Review-g47962-d501354-Reviews-Hilton_Garden_Inn_Queens_JFK_Airport-Jamaica_Queens_New_York.html": {
+    "location": {
+      "sum_sentiment": -6,
+      "count": 94
+    },
+    "hospitality": {
+      "sum_sentiment": 236,
+      "count": 787
+    },
+    "room_quality": {
+      "sum_sentiment": 1,
+      "count": 747
+    }
+  },
+  "/Hotel_Review-g616325-d12165292-Reviews-Wyndham_Garden_Fresh_Meadows_Flushing-Queens_New_York.html": {
+    "location": {
+      "sum_sentiment": 2,
+      "count": 6
+    },
+    "hospitality": {
+      "sum_sentiment": -15,
+      "count": 24
+    },
+    "room_quality": {
+      "sum_sentiment": -27,
+      "count": 57
+    }
+  },
+  "/Hotel_Review-g47626-d12246206-Reviews-Aloft_New_York_LaGuardia_Airport-East_Elmhurst_Queens_New_York.html": {
+    "location": {
+      "sum_sentiment": 1,
+      "count": 1
+    },
+    "hospitality": {
+      "sum_sentiment": -1,
+      "count": 9
+    },
+    "room_quality": {
+      "sum_sentiment": 4,
+      "count": 22
+    }
+  },
+  "/Hotel_Review-g48477-d10333880-Reviews-Wyndham_Garden_Laguardia_South-Rego_Park_Queens_New_York.html": {
+    "location": {
+      "sum_sentiment": 6,
+      "count": 12
+    },
+    "hospitality": {
+      "sum_sentiment": 22,
+      "count": 52
+    },
+    "room_quality": {
+      "sum_sentiment": -4,
+      "count": 99
+    }
+  },
+  "/Hotel_Review-g60827-d622721-Reviews-Holiday_Inn_Express_Brooklyn-Brooklyn_New_York.html": {
+    "location": {
+      "sum_sentiment": 15,
+      "count": 73
+    },
+    "hospitality": {
+      "sum_sentiment": 6,
+      "count": 172
+    },
+    "room_quality": {
+      "sum_sentiment": -107,
+      "count": 324
+    }
+  }
+}
