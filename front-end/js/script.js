@@ -179,7 +179,8 @@ function updatePanel(d) {
       type: 'POST',
       contentType: 'application/json',
       data: `{
-        "_source": ["price", "name", "listing_url"],
+        "_source": ["price", "name", "listing_url", "latitude", "longitude"],
+        "size": 60,
         "query": {
           "match": {
             "location_cell": "${d.location_cell}"
@@ -192,6 +193,9 @@ function updatePanel(d) {
               return d["_source"]["price"];
             });
             createPriceHist(prices);
+            var listings = data["hits"]["hits"].map(function(d) { return d["_source"]; });
+            showAirbnbListings(listings);
+            plotAirbnbWrapper(listings);
           }
       },
       error: function(xhr) {
@@ -259,6 +263,52 @@ function createPriceHist(data) {
        .attr("class", "x axis")
        .attr("transform", "translate(0," + height + ")")
        .call(xAxis);
+}
+
+function showAirbnbListings(listings) {
+  document.getElementById("available-airbnb-title").style.display = "";
+
+  var collection = document.getElementById("airbnb-collection"); 
+  collection.style.display = "";
+
+  collection.innerHTML = ""; // remove current html
+  for (var i = 0; i < Math.min(listings.length, 10); i++) {
+    var a = document.createElement("a");
+    a.textContent = listings[i].name;
+    a.href = listings[i].listing_url;
+    a.className = "collection-item";
+    a.setAttribute("target", "_blank");
+    collection.appendChild(a);
+  }
+}
+
+function plotAirbnbWrapper(data) {
+
+  var plotAirbnb = function() {
+    data.forEach(function(d, i) {
+      var latlng = new L.LatLng(+d.latitude, +d.longitude);
+      var point = map.latLngToLayerPoint(latlng);
+        d.x = point.x;
+        d.y = point.y;
+      });
+
+      var g = d3.select("#overlay g");
+
+      g.selectAll(".hotel-circle").remove();
+
+      g.selectAll(".hotel-circle")
+       .data(data)
+       .enter()
+       .append("circle")
+       .attr("class", "hotel-circle")
+       .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
+       .attr('style', 'pointer-events:visiblePainted;')
+       .attr('fill', "#8e44ad")
+       .attr('stroke', 'black')
+       .attr("r", 3);
+    }
+  plotAirbnb();
+  map.on('viewreset moveend', plotAirbnb);
 }
 
 
