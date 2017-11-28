@@ -161,8 +161,6 @@ queue().defer(d3.csv, "js/location_cell_centers.csv")
 
 function updatePanel(d) {
     last_selected = d.location_cell;
-
-    document.getElementById("subway-name").textContent = d.name;
     document.getElementById("price-hist-title").style.display = "";
 
     var diff = prices_aggregated[d.location_cell].difference.toFixed(2);
@@ -176,16 +174,33 @@ function updatePanel(d) {
     d3.select(".clicked").classed("clicked", false);
     d3.select(this).classed("clicked", true);
 
-    createPriceHist(d.location_cell);
-    // d3.csv("js/hotels_aggregated2.csv", function(data) {
-    //     data = data.filter(function(curr) {
-    //         return d.location_cell == +curr.location_cell;
-    //     });
-    //     createPriceHist(data);
-    // });
+    $.ajax({
+      url: 'https://search-cx4242-airbnb-vs-hotels-lxzlxz6rpewpzksb46papky6he.us-east-1.es.amazonaws.com/airbnb/_search',
+      type: 'POST',
+      contentType: 'application/json',
+      data: `{
+        "_source": ["price", "name", "listing_url"],
+        "query": {
+          "match": {
+            "location_cell": "${d.location_cell}"
+          }
+        }
+      }`, 
+      success: function(data) {
+          if (data["hits"] && data["hits"]["total"]) {
+            var prices = data["hits"]["hits"].map(function(d) {
+              return d["_source"]["price"];
+            });
+            createPriceHist(prices);
+          }
+      },
+      error: function(xhr) {
+        console.log(xhr);
+      }
+    });
 }
 
-function createPriceHist(location_cell) {
+function createPriceHist(data) {
     d3.select("#prices-hist-svg").remove();
 
     var margin = {
@@ -207,69 +222,43 @@ function createPriceHist(location_cell) {
     var g = svg.append("g")
                .attr("transform", "translate(" + margin.left + "," + margin.top + ")"); 
 
-    $.ajax({
-      url: 'https://search-cx4242-airbnb-vs-hotels-lxzlxz6rpewpzksb46papky6he.us-east-1.es.amazonaws.com/airbnb/_search',
-      type: 'POST',
-      contentType: 'application/json',
-      data: `{
-        "_source": ["price"],
-        "query": {
-          "match": {
-            "location_cell": "${location_cell}"
-          }
-        }
-      }`, 
-      success: function(data) {
-        if (data["hits"] && data["hits"]["total"]) {
-          data = data["hits"]["hits"].map(function(d) {
-            return d["_source"]["price"];
-          });
-          
-          //console.log(data);
-
-          var x = d3.scale.linear()
+    var x = d3.scale.linear()
               .domain([d3.min(data), d3.max(data)])
               .range([0, width]);
 
-          var hist_data = d3.layout.histogram()
-                            .bins(x.ticks(6))
-                            (data);
+    var hist_data = d3.layout.histogram()
+                      .bins(x.ticks(6))
+                      (data);
 
-          var yMax = d3.max(hist_data, function(d) { 
-              return d.length; 
-          });
+    var yMax = d3.max(hist_data, function(d) { 
+        return d.length; 
+    });
 
-          var y = d3.scale.linear()
-                    .domain([0, yMax])
-                    .range([height, 0]);
+    var y = d3.scale.linear()
+              .domain([0, yMax])
+              .range([height, 0]);
 
-          var xAxis = d3.svg.axis().scale(x).orient('bottom');
+    var xAxis = d3.svg.axis().scale(x).orient('bottom');
 
-          var bars = g.selectAll(".bar")
-                        .data(hist_data)
-                        .enter()
-                        .append("g")
-                        .attr("class", "bar")
-                        .attr("transform", function(d) {
-                          return "translate(" + x(d.x) + "," + y(d.y) + ")"
-                        });
+    var bars = g.selectAll(".bar")
+                  .data(hist_data)
+                  .enter()
+                  .append("g")
+                  .attr("class", "bar")
+                  .attr("transform", function(d) {
+                    return "translate(" + x(d.x) + "," + y(d.y) + ")"
+                  });
 
-          bars.append("rect")
-              .attr("x", 1)
-              .attr("width", (x(hist_data[0].dx) - x(0)) - 1)
-              .attr("height", function(d) { return height - y(d.y); })
-              .attr("fill", "#2980b9");
+    bars.append("rect")
+        .attr("x", 1)
+        .attr("width", (x(hist_data[0].dx) - x(0)) - 1)
+        .attr("height", function(d) { return height - y(d.y); })
+        .attr("fill", "#2980b9");
 
-          g.append("g")
-             .attr("class", "x axis")
-             .attr("transform", "translate(0," + height + ")")
-             .call(xAxis);
-        }
-      },
-      error: function(xhr) {
-        console.log(xhr);
-      }
-  });
+    g.append("g")
+       .attr("class", "x axis")
+       .attr("transform", "translate(0," + height + ")")
+       .call(xAxis);
 }
 
 
