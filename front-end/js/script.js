@@ -237,7 +237,7 @@ function updatePanel(d) {
                 // console.log(hotel_beds);
 
                 createHistWrapper(airbnb_prices, hotel_prices);
-                createTimeSeries(hotel_prices);
+                createTimeSeries(hotel_prices, d.location_cell);
 
                 if (hotel_beds.length) { 
                     createDonutChart("hotel-rooms", hotel_beds, "Hotels");
@@ -441,7 +441,7 @@ function plotPointsWrapper(airbnb, hotels) {
     // map.on('viewreset moveend', plotPoints);
 }
 
-function createTimeSeries(data) {
+function createTimeSeries(data, location_cell) {
     d3.selectAll('#hotel-timeseries').remove();
     var format = d3.time.format("%Y-%m-%d");
 
@@ -473,44 +473,150 @@ function createTimeSeries(data) {
     var g = svg.append("g")
                .attr("transform", "translate(" + margin.left + "," + margin.top + ")"); 
 
-    var x = d3.time.scale().rangeRound([0, width]).domain(d3.extent(prices, function(d) { return d.key; }));
-    var y = d3.scale.linear().rangeRound([height, 0]).domain([0, d3.max(prices, function(d) { return d.values; })]);
 
-    var line = d3.svg.line()
-                 .x(function(d) { return x(d.key); })
-                 .y(function(d) { return y(d.values)});
+    $.ajax({
+        url: 'https://search-cx4242-airbnb-vs-hotels-lxzlxz6rpewpzksb46papky6he.us-east-1.es.amazonaws.com/airbnb_prices/_search',
+        type: 'POST',
+        contentType: 'application/json',
+        data:  `
+        {
+          "size": 4000,
+          "query": {
+            "match": {
+                "location_cell": ${location_cell}
+            }
+          }
+        }
+        `,
+        success: function(data) {
+            if (data["hits"] && data["hits"]["total"]) {
+                var by_date = [];
+                data = data["hits"]["hits"];
+                var options = ["2017-12-06 to 2017-12-07", "2017-12-16 to 2017-12-17", "2017-12-26 to 2017-12-27"];
+                data.forEach(function(d) {
+                    var dates = options.map(function(o) {
+                        return {
+                            "date": o.substring(0, 10),
+                            "price": d._source[o]
+                        };
+                    });
+                    by_date = by_date.concat(dates);
+                });
+                console.log(by_date);
 
-    //console.log(prices);
-    g.append("path")
-     .datum(prices)
-     .attr("fill", "none")
-     .attr("stroke", "steelblue")
-     .attr("stroke-width", 2)
-     .attr("d", line);
+                airbnb_prices = d3.nest()
+                         .key(function(d) { return d.date; })
+                         .rollup(function(v) { return d3.mean(v, function(d) { return d.price; })})
+                         .entries(by_date);
 
-    // in case theres only one point in time
-    if (prices.length == 1) {
-        g.selectAll(".timeseries-point")
-        .data(prices)
-        .enter()
-        .append("circle")
-        .attr("cx", function(d) { return x(d.key); })
-        .attr("cy", function(d) { return y(d.values); })
-        .attr("fill", "steelblue")
-        .attr("r", 3)
+                airbnb_prices.forEach(function(d) {
+                    d.key = format.parse(d.key);
+                });
+
+                var dataset = [
+                    {id: "hotel", prices: prices},
+                    {id: "airbnb", prices: airbnb_prices}
+                ];
+                console.log(dataset);
+
+                var all_prices = prices.concat(airbnb_prices);
+                console.log(all_prices);
+
+                var x = d3.time.scale().rangeRound([0, width]).domain(d3.extent(all_prices, function(d) { return d.key; }));
+                var y = d3.scale.linear().rangeRound([height, 0]).domain([0, d3.max(all_prices, function(d) { return d.values; })]);
+                var z = d3.scale.ordinal().range(['steelblue', 'green']).domain(dataset.map(function(d) { return d.id; }));
+
+                var line = d3.svg.line()
+                             .x(function(d) { return x(d.key); })
+                             .y(function(d) { return y(d.values); });
+
+                var lines = g.selectAll(".timeline")
+                             .data(dataset)
+                             .enter()
+                             .append("g")
+                             .attr("class", "timeline");
+
+                lines.append("path")
+                     .attr("d", function(d) { console.log(d.prices); return line(d.prices); })
+                     .attr("fill", "none")
+                     .attr("stroke-width", 2)
+                     .attr("stroke", function(d) { return z(d.id); });
+
+                // in case theres only one point in time
+                if (prices.length == 1) {
+                    g.selectAll(".timeseries-point")
+                    .data(prices)
+                    .enter()
+                    .append("circle")
+                    .attr("cx", function(d) { return x(d.key); })
+                    .attr("cy", function(d) { return y(d.values); })
+                    .attr("fill", "steelblue")
+                    .attr("r", 3)
+                }
+
+                var xAxis = d3.svg.axis().scale(x).orient('bottom').ticks(5);
+                var yAxis = d3.svg.axis().scale(y).orient('left');
+
+                g.append("g")
+                 .attr("class", "x axis")
+                 .attr("transform", "translate(0," + height + ")")
+                 .call(xAxis);
+
+                g.append("g")
+                 .attr("class", "y axis")
+                 .call(yAxis);
+
+            } else {
+                plotHotelOnly();
+            }
+        },
+        error: function(xhr) {
+            console.log(xhr);
+        }
+    });
+
+
+    var plotHotelOnly = function() {
+        var x = d3.time.scale().rangeRound([0, width]).domain(d3.extent(prices, function(d) { return d.key; }));
+        var y = d3.scale.linear().rangeRound([height, 0]).domain([0, d3.max(prices, function(d) { return d.values; })]);
+
+        var line = d3.svg.line()
+                     .x(function(d) { return x(d.key); })
+                     .y(function(d) { return y(d.values)});
+
+        //console.log(prices);
+        g.append("path")
+         .datum(prices)
+         .attr("fill", "none")
+         .attr("stroke", "steelblue")
+         .attr("stroke-width", 2)
+         .attr("d", line);
+
+        // in case theres only one point in time
+        if (prices.length == 1) {
+            g.selectAll(".timeseries-point")
+            .data(prices)
+            .enter()
+            .append("circle")
+            .attr("cx", function(d) { return x(d.key); })
+            .attr("cy", function(d) { return y(d.values); })
+            .attr("fill", "steelblue")
+            .attr("r", 3)
+        }
+
+        var xAxis = d3.svg.axis().scale(x).orient('bottom').ticks(5);
+        var yAxis = d3.svg.axis().scale(y).orient('left');
+
+        g.append("g")
+         .attr("class", "x axis")
+         .attr("transform", "translate(0," + height + ")")
+         .call(xAxis);
+
+        g.append("g")
+         .attr("class", "y axis")
+         .call(yAxis);
     }
 
-    var xAxis = d3.svg.axis().scale(x).orient('bottom').ticks(5);
-    var yAxis = d3.svg.axis().scale(y).orient('left');
-
-    g.append("g")
-     .attr("class", "x axis")
-     .attr("transform", "translate(0," + height + ")")
-     .call(xAxis);
-
-    g.append("g")
-     .attr("class", "y axis")
-     .call(yAxis);
 }
 
 function createDonutChart(id, data, title) {
@@ -774,40 +880,35 @@ function reviewBarChart(location_cell) {
            .defer(d3.csv, "js/air_sentiments.csv")
            .await(function(error, hotel, airbnb) {
 
-           hotel = hotel.filter(function(d) {
+            hotel = hotel.filter(function(d) {
                 return location_cell == d.location_tag;
-           });
-           if (!hotel.length) {
-             return;
-           } 
-           airbnb = airbnb.filter(function(d) {
+            });
+            if (!hotel.length) {
+                return;
+            } 
+            airbnb = airbnb.filter(function(d) {
                 return location_cell == d.location_tag;
-           });
-           if (!airbnb.length) {
-            return;
-           }
+            });
+            if (!airbnb.length) {
+                return;
+            }
 
-           hotel = hotel[0];
-           airbnb = airbnb[0];
-           var dataset = [
-              {label: "location", hotel: +hotel.location, airbnb: +airbnb.location},
-              {label: "hospitality", hotel: +hotel.hospitality, airbnb: +airbnb.hospitality},
-              {label: "room_quality", hotel: +hotel.room_quality, airbnb: +airbnb.room_quality} 
-           ]
+            hotel = hotel[0];
+            airbnb = airbnb[0];
+            var dataset = [
+               {label: "location", hotel: +hotel.location, airbnb: +airbnb.location},
+               {label: "hospitality", hotel: +hotel.hospitality, airbnb: +airbnb.hospitality},
+               {label: "room_quality", hotel: +hotel.room_quality, airbnb: +airbnb.room_quality} 
+            ]
 
-           var options = ["hotel", "airbnb"];
-           dataset.forEach(function(d) {
-            d.values = options.map(function(name) { return {name: name, value: +d[name]}; });
-           });
+            var options = ["hotel", "airbnb"];
+            dataset.forEach(function(d) {
+                d.values = options.map(function(name) { return {name: name, value: +d[name]}; });
+            });
 
-           console.log(dataset);
-
-           y0.domain(dataset.map(function(d) { return d.label; }));
-           y1.domain(options).rangeRoundBands([0, y0.rangeBand() ]);
-           x.domain([-1, d3.max(dataset, function(d) { return d3.max(d.values, function(x) { return x.value; })})]);
-
-           console.log(y0("hotel"));
-           console.log(y0("airbnb"));
+            y0.domain(dataset.map(function(d) { return d.label; }));
+            y1.domain(options).rangeRoundBands([0, y0.rangeBand() ]);
+            x.domain([-1, d3.max(dataset, function(d) { return d3.max(d.values, function(x) { return x.value; })})]);
 
             var bars = g.selectAll(".bar")
                        .data(dataset)
