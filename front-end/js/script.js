@@ -167,6 +167,7 @@ function updatePanel(d) {
     // hide/show all the appropriate stuff
     document.getElementById("vis").style.display = "";
     document.getElementById("results").style.display = "none";
+    document.getElementById("no-results").style.display = "none";
 
     var diff = prices_aggregated[d.location_cell].difference.toFixed(2);
     if (diff > 0) {
@@ -585,10 +586,13 @@ function searched(e) {
                     var lat = +data[0].lat;
                     var lon = +data[0].lon;
                     searchLocationElastic(lat, lon);
+                } else {
+                    noResults();
                 }
             },
             error: function(xhr) {
                 console.log(xhr);
+                noResults();
             }
         });
     }
@@ -633,10 +637,13 @@ function searchLocationElastic(lat, lon) {
         success: function(data) {
             if (data["hits"] && data["hits"]["total"]) {
                 showResults(data["hits"]["hits"]);
+            } else {
+                noResults();
             }
         },
         error: function(xhr) {
             console.log(xhr);
+            noResults();
         }
     });
 }
@@ -645,6 +652,8 @@ function showResults(data) {
     var collection = document.getElementById("results");
     collection.style.display = "";
     document.getElementById("vis").style.display = "none";
+    document.getElementById("no-results").style.display = "none";
+
     collection.innerHTML = "";
 
     var hotel_points = [];
@@ -716,4 +725,8 @@ function showResults(data) {
     }
 
     plotPointsWrapper(airbnb_points, hotel_points);
+}
+
+function noResults() {
+    document.getElementById("no-results").style.display = "";
 }
