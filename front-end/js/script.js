@@ -277,6 +277,7 @@ function chauvenet (x) {
 }
 
 function createPriceHist(data, id, xmin, xmax, title) {
+    console.log(data);
     //console.log(data);
     d3.selectAll('#' + id).remove();
 
@@ -304,7 +305,7 @@ function createPriceHist(data, id, xmin, xmax, title) {
               .range([0, width]);
 
     var hist_data = d3.layout.histogram()
-                      .bins(x.ticks(10))
+                      .bins(10)
                       (data);
 
     var yMax = d3.max(hist_data, function(d) { 
@@ -315,7 +316,7 @@ function createPriceHist(data, id, xmin, xmax, title) {
               .domain([0, yMax])
               .range([height, 0]);
 
-    var xAxis = d3.svg.axis().scale(x).orient('bottom');
+    var xAxis = d3.svg.axis().scale(x).orient('bottom').ticks(8);
 
     var bars = g.selectAll(".bar")
                   .data(hist_data)
