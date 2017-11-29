@@ -243,6 +243,7 @@ function updatePanel(d) {
                     createDonutChart("hotel-rooms", hotel_beds, "Hotels");
                 }
                 createDonutChart("airbnb-rooms", airbnbs.map(function(d) { return +d["_source"]["beds"]} ), "Airbnb");
+                reviewBarChart(d.location_cell);
             }
         },
         error: function(xhr) {
@@ -574,6 +575,14 @@ function createDonutChart(id, data, title) {
 function searched(e) {
     if (e.keyCode == 13 || e.which == 13) {
         var input = document.getElementById("search");
+
+        if (input.value.length === 0) {
+            document.getElementById("vis").style.display = "none";
+            document.getElementById("results").style.display = "none";
+            document.getElementById("no-results").style.display = "none";
+            return;
+        }
+
         $.ajax({
             url: "http://nominatim.openstreetmap.org/search",
             type: "GET",
@@ -729,4 +738,104 @@ function showResults(data) {
 
 function noResults() {
     document.getElementById("no-results").style.display = "";
+}
+
+function reviewBarChart(location_cell) {
+    d3.select("#reviews-svg").remove();
+
+    var margin = {
+        top: 10,
+        left: 90,
+        right: 10,
+        bottom: 30
+    };
+
+    var width = 400 - margin.left - margin.right;
+    var height = 180 - margin.top - margin.bottom;
+
+    var svg = d3.select("#reviews")
+                .append("svg")
+                .attr("id", "reviews-svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom);
+
+    var g = svg.append("g")
+               .attr("transform", "translate(" + margin.left + "," + margin.top + ")");  
+
+    var x = d3.scale.linear().range([0, width]);
+    var y0 = d3.scale.ordinal().rangeRoundBands([height, 0], .1);
+    var y1 = d3.scale.ordinal();
+
+    var color = d3.scale.ordinal()
+                  .range(["#98abc5", "#8a89a6", "#7b6888"])
+                  .domain(["hotel", "airbnb"]);
+
+    queue().defer(d3.csv, "js/hotel_sentiments.csv")
+           .defer(d3.csv, "js/air_sentiments.csv")
+           .await(function(error, hotel, airbnb) {
+
+           hotel = hotel.filter(function(d) {
+                return location_cell == d.location_tag;
+           });
+           if (!hotel.length) {
+             return;
+           } 
+           airbnb = airbnb.filter(function(d) {
+                return location_cell == d.location_tag;
+           });
+           if (!airbnb.length) {
+            return;
+           }
+
+           hotel = hotel[0];
+           airbnb = airbnb[0];
+           var dataset = [
+              {label: "location", hotel: +hotel.location, airbnb: +airbnb.location},
+              {label: "hospitality", hotel: +hotel.hospitality, airbnb: +airbnb.hospitality},
+              {label: "room_quality", hotel: +hotel.room_quality, airbnb: +airbnb.room_quality} 
+           ]
+
+           var options = ["hotel", "airbnb"];
+           dataset.forEach(function(d) {
+            d.values = options.map(function(name) { return {name: name, value: +d[name]}; });
+           });
+
+           console.log(dataset);
+
+           y0.domain(dataset.map(function(d) { return d.label; }));
+           y1.domain(options).rangeRoundBands([0, y0.rangeBand() ]);
+           x.domain([-1, d3.max(dataset, function(d) { return d3.max(d.values, function(x) { return x.value; })})]);
+
+           console.log(y0("hotel"));
+           console.log(y0("airbnb"));
+
+            var bars = g.selectAll(".bar")
+                       .data(dataset)
+                       .enter()
+                       .append("g")
+                       .attr("class", "bar")
+                       .attr("transform", function(d) { return "translate(0," + y0(d.label) + ")"; });
+
+            var bar2 = bars.selectAll("rect")
+                           .data(function(d) { return d.values; })
+                           .enter()
+                           .append("rect")
+                           .attr("height", y1.rangeBand())
+                           .attr("y", function(d) { return y1(d.name); })
+                           .attr("x", 0)
+                           .attr("width", function(d) { return x(d.value); })
+                           .attr("value", function(d) { return d.name; })
+                           .style("fill", function(d) { return color(d.name); });
+
+            var yAxis = d3.svg.axis().scale(y0).orient('left');
+            g.append("g")
+             .attr("class", "y axis")
+             .call(yAxis);
+
+            var xAxis = d3.svg.axis().scale(x).orient('bottom');
+            g.append("g")
+             .attr("class", "y axis")
+             .attr("transform", "translate(0," + height + ")")
+             .call(xAxis);
+    });
 }
