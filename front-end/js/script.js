@@ -141,7 +141,7 @@ prices_aggregated = {}
 
 // load data and draw svg overlay on top of map
 queue().defer(d3.csv, "js/location_cell_centers.csv")
-       .defer(d3.csv, "js/prices_aggregated.csv")
+       .defer(d3.csv, "js/prices_aggregated2.csv")
        .await(function(error, points, prices) {
             if (error) throw error;
             price_data = {};
@@ -199,6 +199,12 @@ function updatePanel(d) {
               }
             });
 
+            var listings = airbnbs.map(function(d) { return d["_source"]; });
+            var hotel_options = hotels.map(function(d) { return d["_source"]; });
+            showAirbnbListings(listings);
+            plotPointsWrapper(listings, hotel_options);
+            showHotelListings(hotel_options);
+
             var airbnb_prices = airbnbs.map(function(d) { return +d["_source"]["price"]; });
 
             var hotel_prices = [];
@@ -206,18 +212,17 @@ function updatePanel(d) {
             dates.forEach(function(date) {
               hotels.forEach(function(d) {
                 if (d["_source"].hasOwnProperty(date)) {
-                  hotel_prices = hotel_prices.concat(d["_source"][date].map(function(h) { return +h.rates[0].price; }));
+                  hotel_prices = hotel_prices.concat(d["_source"][date].map(function(h) { 
+                    return {
+                      date: date,
+                      price: +h.rates[0].price
+                    } 
+                  }));
                 }
               });
             });
 
             createHistWrapper(airbnb_prices, hotel_prices);
-
-            var listings = airbnbs.map(function(d) { return d["_source"]; });
-            var hotel_options = hotels.map(function(d) { return d["_source"]; });
-            showAirbnbListings(listings);
-            plotPointsWrapper(listings, hotel_options);
-            showHotelListings(hotel_options);
           }
       },
       error: function(xhr) {
@@ -228,6 +233,7 @@ function updatePanel(d) {
 
 function createHistWrapper(airbnb, hotel) {
     // filter out outliers
+    hotel = hotel.map(function(d) { return d.price; });
     hotel = chauvenet(hotel);
     airbnb = chauvenet(airbnb);
 
@@ -269,7 +275,7 @@ function chauvenet (x) {
 }
 
 function createPriceHist(data, id, xmin, xmax, title) {
-    console.log(data);
+    //console.log(data);
     d3.selectAll('#' + id).remove();
 
     var margin = {
