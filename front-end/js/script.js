@@ -1,10 +1,10 @@
 $(document).ready(function(){
     // sidebar
     $('.button-collapse').sideNav({
-      menuWidth: 400, // Default is 300
-      edge: 'right', // Choose the horizontal origin
-      closeOnClick: false, // Closes side-nav on <a> clicks, useful for Angular/Meteor
-      draggable: true // Choose whether you can drag to open on touch screens
+        menuWidth: 400, // Default is 300
+        edge: 'right', // Choose the horizontal origin
+        closeOnClick: false, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+        draggable: true // Choose whether you can drag to open on touch screens
     });
 });
 
@@ -17,84 +17,83 @@ voronoiMap = function(map, points) {
                         .range(colors);
 
     var draw = function() {      
-      var voronoi = d3.distanceLimitedVoronoi()
-        .x(function(d) { return d.x; })
-        .y(function(d) { return d.y; })
-        .limit(90 * map.getZoomScale(map.getZoom(), 13));
+        var voronoi = d3.distanceLimitedVoronoi()
+                        .x(function(d) { return d.x; })
+                        .y(function(d) { return d.y; })
+                        .limit(80 * map.getZoomScale(map.getZoom(), 13));
 
-      d3.select('#overlay').remove();
+        d3.select('#overlay').remove();
 
-      var bounds = map.getBounds(),
-          topLeft = map.latLngToLayerPoint(bounds.getNorthWest()),
-          bottomRight = map.latLngToLayerPoint(bounds.getSouthEast()),
-          drawLimit = bounds.pad(0.4);
+        var bounds = map.getBounds(),
+            topLeft = map.latLngToLayerPoint(bounds.getNorthWest()),
+            bottomRight = map.latLngToLayerPoint(bounds.getSouthEast()),
+            drawLimit = bounds.pad(0.4);
 
-      filteredPoints = points.filter(function(d) {
-        var latlng = new L.LatLng(+d.lat, +d.lon);
-        if (!drawLimit.contains(latlng)) { return false };
-        var point = map.latLngToLayerPoint(latlng);
-        d.location_cell = +d.location_cell;
-        d.x = point.x;
-        d.y = point.y;
-        return true;
-      });
-
-      voronoi(filteredPoints).forEach(function(d) { d.point.cell = d; });
-
-      var svg = d3.select(map.getPanes().overlayPane).append("svg")
-        .attr('id', 'overlay')
-        .attr("class", "leaflet-zoom-hide")
-        .style("width", map.getSize().x + 'px')
-        .style("height", map.getSize().y + 'px')
-        .style("margin-left", topLeft.x + "px")
-        .style("margin-top", topLeft.y + "px");
-
-      var g = svg.append("g")
-        .attr("transform", "translate(" + (-topLeft.x) + "," + (-topLeft.y) + ")");
-
-      var svgPoints = g.attr("class", "points")
-        .selectAll("g")
-          .data(filteredPoints)
-          .enter().append("g")
-          .attr("class", "point");
-
-      var buildPathFromPoint = function(point) {
-        //return "M" + point.cell.join("L") + "Z";
-        return point.cell.path;
-      }
-
-      svgPoints.append("path")
-        .attr("class", "point-cell")
-        .attr("d", buildPathFromPoint)
-        .attr("stroke", "black")
-        .attr("fill", function(d) {
-          x = prices_aggregated[d.location_cell];
-          if (x) return color_scale(x.difference);
-          return "none";
-        })
-        .attr("opacity", .4)
-        .attr('style', 'pointer-events:visiblePainted;')
-        .classed("clicked", function(d) {
-          return d.location_cell == last_selected;
-        })
-        .on("click", updatePanel)
-        .on("mouseenter", function(d) {
-          if (!d3.select(this).classed("clicked"))
-            d3.select(this).classed("hovered", true);
-        })
-        .on("mouseleave", function(d) {
-          d3.select(this).classed("hovered", false);
+        filteredPoints = points.filter(function(d) {
+            var latlng = new L.LatLng(+d.lat, +d.lon);
+            if (!drawLimit.contains(latlng)) { return false };
+            var point = map.latLngToLayerPoint(latlng);
+            d.location_cell = +d.location_cell;
+            d.x = point.x;
+            d.y = point.y;
+            return true;
         });
 
-      svgPoints.append("circle")
-        .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
-        .style('fill', function(d) {
-          x = prices_aggregated[d.location_cell];
-          if (x) return color_scale(x.difference);
-          return "none";
-        })
-        //.style("stroke", "black")
-        .attr("r", 3);
+        voronoi(filteredPoints).forEach(function(d) { d.point.cell = d; });
+
+        var svg = d3.select(map.getPanes().overlayPane).append("svg")
+                    .attr('id', 'overlay')
+                    .attr("class", "leaflet-zoom-hide")
+                    .style("width", map.getSize().x + 'px')
+                    .style("height", map.getSize().y + 'px')
+                    .style("margin-left", topLeft.x + "px")
+                    .style("margin-top", topLeft.y + "px");
+
+        var g = svg.append("g")
+                   .attr("transform", "translate(" + (-topLeft.x) + "," + (-topLeft.y) + ")");
+
+        var svgPoints = g.attr("class", "points")
+                         .selectAll("g")
+                         .data(filteredPoints)
+                         .enter().append("g")
+                         .attr("class", "point");
+
+        var buildPathFromPoint = function(point) {
+            //return "M" + point.cell.join("L") + "Z";
+            return point.cell.path;
+        }
+
+        svgPoints.append("path")
+                 .attr("class", "point-cell")
+                 .attr("d", buildPathFromPoint)
+                 .attr("stroke", "black")
+                 .attr("fill", function(d) {
+                      x = prices_aggregated[d.location_cell];
+                      if (x) return color_scale(x.difference);
+                      return "none";
+                 })
+                 .attr("opacity", .4)
+                 .attr('style', 'pointer-events:visiblePainted;')
+                 .classed("clicked", function(d) {
+                      return d.location_cell == last_selected;
+                 })
+                 .on("click", updatePanel)
+                 .on("mouseenter", function(d) {
+                     if (!d3.select(this).classed("clicked"))
+                        d3.select(this).classed("hovered", true);
+                 })
+                 .on("mouseleave", function(d) {
+                     d3.select(this).classed("hovered", false);
+                 });
+
+        svgPoints.append("circle")
+                 .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
+                 .style('fill', function(d) {
+                    x = prices_aggregated[d.location_cell];
+                    if (x) return color_scale(x.difference);
+                    return "none";
+                 })
+                 .attr("r", 3);
     }
 
     draw();
@@ -110,8 +109,8 @@ voronoiMap = function(map, points) {
 
             div.innerHTML = "Average price difference <br>"
             for (var i = 0; i < values.length; i++) {
-              div.innerHTML += `<i style="background: ${colors[i]}"></i> \$${prev} to \$${values[i]} <br>`;
-              prev = values[i];
+                div.innerHTML += `<i style="background: ${colors[i]}"></i> \$${prev} to \$${values[i]} <br>`;
+                prev = values[i];
             }
 
             return div;
@@ -131,9 +130,9 @@ var map = L.map('map');
 map.setView([40.731922, -73.965616], 12);
 
 var tiles = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
-  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
-  subdomains: 'abcd',
-  maxZoom: 18
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+    subdomains: 'abcd',
+    maxZoom: 18
 });
 tiles.addTo(map);
 
@@ -163,12 +162,13 @@ function updatePanel(d) {
     last_selected = d.location_cell;
     document.getElementById("price-hist-title").style.display = "";
     document.getElementById("price-time-title").style.display = "";
+    document.getElementById("available-hotel-title").style.display = "";
 
     var diff = prices_aggregated[d.location_cell].difference.toFixed(2);
     if (diff > 0) {
-      var priceStr = `Hotel rooms are on average $${diff} more expensive per night than Airbnbs.`;
+        var priceStr = `Hotel rooms are on average $${diff} more expensive per night than Airbnbs.`;
     } else {
-      var priceStr = `Hotel rooms are on average $${(-1 * diff)} less expensive per night than Airbnbs.`;
+        var priceStr = `Hotel rooms are on average $${(-1 * diff)} less expensive per night than Airbnbs.`;
     }
     document.getElementById("difference-text").textContent = priceStr;
 
@@ -176,60 +176,60 @@ function updatePanel(d) {
     d3.select(this).classed("clicked", true);
 
     $.ajax({
-      url: 'https://search-cx4242-airbnb-vs-hotels-lxzlxz6rpewpzksb46papky6he.us-east-1.es.amazonaws.com/hotels,airbnb/_search',
-      type: 'POST',
-      contentType: 'application/json',
-      data: `{
-        "_source": ["tripadvisor_name", "name", "2017-11-16.rates.price", "2017-11-26.rates.price", "2017-12-06.rates.price", "2017-12-16.rates.price", "2017-12-26.rates.price", "price", "listing_url", "tripadvisor_url", "latitude", "longitude", "lat", "lon"],
-        "size": 4000,
-        "query": {
-          "match": {
-            "location_cell": "${d.location_cell}"
-          }
-        }
-      }`, 
-      success: function(data) {
-          if (data["hits"] && data["hits"]["total"]) {
-            var airbnbs = [];
-            var hotels = [];
-            data["hits"]["hits"].forEach(function(d) {
-              if (d._index == "airbnb") {
-                airbnbs.push(d);
-              } else {
-                hotels.push(d);
+        url: 'https://search-cx4242-airbnb-vs-hotels-lxzlxz6rpewpzksb46papky6he.us-east-1.es.amazonaws.com/hotels,airbnb/_search',
+        type: 'POST',
+        contentType: 'application/json',
+        data: `{
+            "_source": ["tripadvisor_name", "name", "2017-11-16.rates.price", "2017-11-26.rates.price", "2017-12-06.rates.price", "2017-12-16.rates.price", "2017-12-26.rates.price", "price", "listing_url", "tripadvisor_url", "location.lat", "location.lon", "lat", "lon"],
+            "size": 4000,
+            "query": {
+              "match": {
+                "location_cell": "${d.location_cell}"
               }
-            });
+            }
+          }`, 
+        success: function(data) {
+            if (data["hits"] && data["hits"]["total"]) {
+                var airbnbs = [];
+                var hotels = [];
+                data["hits"]["hits"].forEach(function(d) {
+                    if (d._index == "airbnb") {
+                        airbnbs.push(d);
+                    } else {
+                        hotels.push(d);
+                    }
+                });
 
-            var listings = airbnbs.map(function(d) { return d["_source"]; });
-            var hotel_options = hotels.map(function(d) { return d["_source"]; });
-            showAirbnbListings(listings);
-            plotPointsWrapper(listings, hotel_options);
-            showHotelListings(hotel_options);
+                var listings = airbnbs.map(function(d) { return d["_source"]; });
+                var hotel_options = hotels.map(function(d) { return d["_source"]; });
+                showAirbnbListings(listings);
+                plotPointsWrapper(listings, hotel_options);
+                showHotelListings(hotel_options);
 
-            var airbnb_prices = airbnbs.map(function(d) { return +d["_source"]["price"]; });
+                var airbnb_prices = airbnbs.map(function(d) { return +d["_source"]["price"]; });
 
-            var hotel_prices = [];
-            var dates = ["2017-11-16", "2017-11-26", "2017-12-06", "2017-12-16", "2017-12-26"];
-            dates.forEach(function(date) {
-              hotels.forEach(function(d) {
-                if (d["_source"].hasOwnProperty(date)) {
-                  hotel_prices = hotel_prices.concat(d["_source"][date].map(function(h) { 
-                    return {
-                      date: date,
-                      price: +h.rates[0].price
-                    } 
-                  }));
-                }
-              });
-            });
+                var hotel_prices = [];
+                var dates = ["2017-11-16", "2017-11-26", "2017-12-06", "2017-12-16", "2017-12-26"];
+                dates.forEach(function(date) {
+                    hotels.forEach(function(d) {
+                        if (d["_source"].hasOwnProperty(date)) {
+                            hotel_prices = hotel_prices.concat(d["_source"][date].map(function(h) { 
+                                return {
+                                    date: date,
+                                    price: +h.rates[0].price
+                                }    
+                            }));
+                        }
+                    });
+                });
 
-            createHistWrapper(airbnb_prices, hotel_prices);
-            createTimeSeries(hotel_prices);
-          }
-      },
-      error: function(xhr) {
-        console.log(xhr);
-      }
+                createHistWrapper(airbnb_prices, hotel_prices);
+                createTimeSeries(hotel_prices);
+            }
+        },
+        error: function(xhr) {
+            console.log(xhr);
+        }
     });
 }
 
@@ -246,17 +246,17 @@ function createHistWrapper(airbnb, hotel) {
 }
 
 function variance(x) {
-  var n = x.length;
-  if (n < 1) return NaN;
-  if (n === 1) return 0;
-  var mean = d3.mean(x),
-      i = -1,
-      s = 0;
-  while (++i < n) {
-    var v = x[i] - mean;
-    s += v * v;
-  }
-  return s / (n - 1);
+    var n = x.length;
+    if (n < 1) return NaN;
+    if (n === 1) return 0;
+    var mean = d3.mean(x),
+          i = -1,
+          s = 0;
+    while (++i < n) {
+        var v = x[i] - mean;
+        s += v * v;
+    }
+    return s / (n - 1);
 };
 
 function chauvenet (x) {
@@ -277,7 +277,7 @@ function chauvenet (x) {
 }
 
 function createPriceHist(data, id, xmin, xmax, title) {
-    console.log(data);
+    //console.log(data);
     //console.log(data);
     d3.selectAll('#' + id).remove();
 
@@ -383,18 +383,18 @@ function plotPointsWrapper(airbnb, hotels) {
 
   var plotPoints = function() {
     airbnb.forEach(function(d, i) {
-      var latlng = new L.LatLng(+d.latitude, +d.longitude);
-      var point = map.latLngToLayerPoint(latlng);
+        var latlng = new L.LatLng(+d.location.lat, +d.location.lon);
+        var point = map.latLngToLayerPoint(latlng);
         d.x = point.x;
         d.y = point.y;
-      });
+    });
 
     hotels.forEach(function(d, i) {
-      var latlng = new L.LatLng(+d.lat, +d.lon);
-      var point = map.latLngToLayerPoint(latlng);
-      d.x = point.x; 
-      d.y = point.y;
-    })
+        var latlng = new L.LatLng(+d.lat, +d.lon);
+        var point = map.latLngToLayerPoint(latlng);
+        d.x = point.x; 
+        d.y = point.y;
+    });
 
     var g = d3.select("#overlay g");
 
@@ -408,7 +408,8 @@ function plotPointsWrapper(airbnb, hotels) {
      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
      .attr('fill', "#8e44ad")
      .attr('stroke', 'black')
-     .attr("r", 2);
+     .attr("r", 2)
+     .style('opacity', .5);
 
     g.selectAll(".hotel-circle").remove();
     g.selectAll(".hotel-circle")
@@ -419,10 +420,12 @@ function plotPointsWrapper(airbnb, hotels) {
      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
      .attr('fill', "#D64541")
      .attr('stroke', 'black')
+     .style('opacity', .9)
      .attr("r", 4);
     }
-  plotPoints();
-  //map.on('viewreset moveend', plotAirbnb);
+    
+    plotPoints();
+    // map.on('viewreset moveend', plotAirbnb);
 }
 
 function createTimeSeries(data) {
@@ -474,14 +477,14 @@ function createTimeSeries(data) {
 
     // in case theres only one point in time
     if (prices.length == 1) {
-      g.selectAll(".timeseries-point")
-       .data(prices)
-       .enter()
-       .append("circle")
-       .attr("cx", function(d) { return x(d.key); })
-       .attr("cy", function(d) { return y(d.values); })
-       .attr("fill", "steelblue")
-       .attr("r", 3)
+        g.selectAll(".timeseries-point")
+        .data(prices)
+        .enter()
+        .append("circle")
+        .attr("cx", function(d) { return x(d.key); })
+        .attr("cy", function(d) { return y(d.values); })
+        .attr("fill", "steelblue")
+        .attr("r", 3)
     }
 
     var xAxis = d3.svg.axis().scale(x).orient('bottom').ticks(5);
