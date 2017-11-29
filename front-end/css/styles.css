@@ -66,6 +66,6 @@ svg {
 
 @media screen and (min-width: 992px) {
 	#map {
-		width: calc(100% - 400px);;
+		width: calc(100% - 450px);;
 	}
 }

@@ -1,11 +1,14 @@
 $(document).ready(function(){
     // sidebar
     $('.button-collapse').sideNav({
-        menuWidth: 400, // Default is 300
+        menuWidth: 450, // Default is 300
         edge: 'right', // Choose the horizontal origin
         closeOnClick: false, // Closes side-nav on <a> clicks, useful for Angular/Meteor
         draggable: true // Choose whether you can drag to open on touch screens
     });
+
+    var searchInput = document.getElementById("search");
+    searchInput.addEventListener("keypress", searched);
 });
 
 var last_selected; // for keeping track of clicked region
@@ -160,9 +163,10 @@ queue().defer(d3.csv, "js/location_cell_centers.csv")
 
 function updatePanel(d) {
     last_selected = d.location_cell;
-    document.getElementById("price-hist-title").style.display = "";
-    document.getElementById("price-time-title").style.display = "";
-    document.getElementById("available-hotel-title").style.display = "";
+
+    // hide/show all the appropriate stuff
+    document.getElementById("vis").style.display = "";
+    document.getElementById("results").style.display = "none";
 
     var diff = prices_aggregated[d.location_cell].difference.toFixed(2);
     if (diff > 0) {
@@ -180,7 +184,7 @@ function updatePanel(d) {
         type: 'POST',
         contentType: 'application/json',
         data: `{
-            "_source": ["tripadvisor_name", "name", "2017-11-16.rates.price", "2017-11-26.rates.price", "2017-12-06.rates.price", "2017-12-16.rates.price", "2017-12-26.rates.price", "price", "listing_url", "tripadvisor_url", "location.lat", "location.lon", "lat", "lon"],
+            "_source": ["tripadvisor_name", "name", "2017-11-16.rates.price", "2017-11-26.rates.price", "2017-12-06.rates.price", "2017-12-16.rates.price", "2017-12-26.rates.price", "price", "listing_url", "tripadvisor_url", "location.lat", "location.lon", "lat", "lon", "beds", "2017-11-16.room_type_info.number_of_beds", "2017-11-26.room_type_info.number_of_beds", "2017-12-06.room_type_info.number_of_beds", "2017-12-16.room_type_info.number_of_beds", "2017-12-26..room_type_info.number_of_beds"],
             "size": 4000,
             "query": {
               "match": {
@@ -209,6 +213,7 @@ function updatePanel(d) {
                 var airbnb_prices = airbnbs.map(function(d) { return +d["_source"]["price"]; });
 
                 var hotel_prices = [];
+                var hotel_beds = [];
                 var dates = ["2017-11-16", "2017-11-26", "2017-12-06", "2017-12-16", "2017-12-26"];
                 dates.forEach(function(date) {
                     hotels.forEach(function(d) {
@@ -219,12 +224,24 @@ function updatePanel(d) {
                                     price: +h.rates[0].price
                                 }    
                             }));
+                            hotel_beds = hotel_beds.concat(d["_source"][date].filter(function(h) {
+                                return h.room_type_info && h.room_type_info.number_of_beds != "Unspecified";
+                            }).map(function(h) {
+                                return +h.room_type_info.number_of_beds;
+                            }));
                         }
                     });
                 });
 
+                // console.log(hotel_beds);
+
                 createHistWrapper(airbnb_prices, hotel_prices);
                 createTimeSeries(hotel_prices);
+
+                if (hotel_beds.length) { 
+                    createDonutChart("hotel-rooms", hotel_beds, "Hotels");
+                }
+                createDonutChart("airbnb-rooms", airbnbs.map(function(d) { return +d["_source"]["beds"]} ), "Airbnb");
             }
         },
         error: function(xhr) {
@@ -288,7 +305,7 @@ function createPriceHist(data, id, xmin, xmax, title) {
         bottom: 30
     };
 
-    var width = 350 - margin.left - margin.right;
+    var width = 400 - margin.left - margin.right;
     var height = 170 - margin.top - margin.bottom;
 
     var svg = d3.select("#prices-hist")
@@ -346,10 +363,7 @@ function createPriceHist(data, id, xmin, xmax, title) {
 }
 
 function showAirbnbListings(listings) {
-    document.getElementById("available-airbnb-title").style.display = "";
-
     var collection = document.getElementById("airbnb-collection"); 
-    collection.style.display = "";
 
     collection.innerHTML = ""; // remove current html
     for (var i = 0; i < Math.min(listings.length, 10); i++) {
@@ -363,10 +377,7 @@ function showAirbnbListings(listings) {
 }
 
 function showHotelListings(hotels) {
-    document.getElementById("available-hotel-title").style.display = "";
-
     var collection = document.getElementById("hotel-collection");
-    collection.style.display = "";
 
     collection.innerHTML = "";
     for (var i = 0; i < Math.min(hotels.length, 10); i++) {
@@ -425,7 +436,7 @@ function plotPointsWrapper(airbnb, hotels) {
     }
     
     plotPoints();
-    // map.on('viewreset moveend', plotAirbnb);
+    // map.on('viewreset moveend', plotPoints);
 }
 
 function createTimeSeries(data) {
@@ -448,7 +459,7 @@ function createTimeSeries(data) {
         bottom: 30
     };
 
-    var width = 350 - margin.left - margin.right;
+    var width = 400 - margin.left - margin.right;
     var height = 180 - margin.top - margin.bottom;
 
     var svg = d3.select("#time")
@@ -498,4 +509,211 @@ function createTimeSeries(data) {
     g.append("g")
      .attr("class", "y axis")
      .call(yAxis);
+}
+
+function createDonutChart(id, data, title) {
+    var total = data.length;
+    d3.select("#" + id).remove();
+
+    data = d3.nest()
+             .key(function(d) { return d; })
+             .rollup(function(v) { return v.length; })
+             .entries(data);
+
+    //console.log(data);
+    var color = d3.scale.ordinal()
+                  .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"])
+                  .domain(data.map(function(d) { return d.key; }));
+
+    var radius = 75;
+    var svg = d3.select("#rooms")
+                .append("svg")
+                .attr("id", id)
+                .attr("width", radius * 2)
+                .attr("height", radius * 2)
+                .append("g")
+                .attr("transform", "translate(" + radius + "," + radius + ")");
+
+    var arc = d3.svg.arc()
+                .outerRadius(radius - 10)
+                .innerRadius(radius - 40);
+
+    var pie = d3.layout.pie()
+                .sort(null)
+                .value(function(d) { return d.values });
+    
+    var g = svg.selectAll(".arc")
+               .data(pie(data))
+               .enter()
+               .append("g")
+               .attr("class", "arc");
+
+    g.append("path")
+     .attr("d", arc)
+     .style("fill", function(d) {
+        return color(d.data.key); 
+     });
+
+    svg.append("text")
+     .attr("text-anchor", "middle")
+     .text(title);
+
+    g.append("text")
+      .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
+      .attr("dy", ".35em")
+      .text(function(d) {
+        if (d.data.values/total > .05) {
+            return d.data.key;
+        }
+        return ""; 
+      })
+      .attr("fill", "white");
+}
+
+function searched(e) {
+    if (e.keyCode == 13 || e.which == 13) {
+        var input = document.getElementById("search");
+        $.ajax({
+            url: "http://nominatim.openstreetmap.org/search",
+            type: "GET",
+            data: {
+                q: input.value + " New York",
+                format: "json"
+            },
+            success: function(data) {
+                if (data.length) {
+                    var lat = +data[0].lat;
+                    var lon = +data[0].lon;
+                    searchLocationElastic(lat, lon);
+                }
+            },
+            error: function(xhr) {
+                console.log(xhr);
+            }
+        });
+    }
+}
+
+function searchLocationElastic(lat, lon) {
+    $.ajax({
+        url: 'https://search-cx4242-airbnb-vs-hotels-lxzlxz6rpewpzksb46papky6he.us-east-1.es.amazonaws.com/hotels,airbnb/_search',
+        type: 'POST',
+        contentType: 'application/json',
+        data: `{
+              "query": {
+                "bool": {
+                  "must": {
+                    "match_all": {}
+                  },
+                  "filter": {
+                    "geo_distance": {
+                      "distance": "1km",
+                      "location": {
+                        "lat": ${lat},
+                        "lon": ${lon}
+                      }
+                    }
+                  }
+                }
+              },
+              "sort": [
+                {
+                  "_geo_distance": {
+                    "location": {
+                      "lat": ${lat},
+                      "lon": ${lon}
+                    },
+                    "order": "asc",
+                    "unit": "km",
+                    "distance_type": "plane"
+                  }
+                }
+              ]
+            }`,
+        success: function(data) {
+            if (data["hits"] && data["hits"]["total"]) {
+                showResults(data["hits"]["hits"]);
+            }
+        },
+        error: function(xhr) {
+            console.log(xhr);
+        }
+    });
+}
+
+function showResults(data) {    
+    var collection = document.getElementById("results");
+    collection.style.display = "";
+    document.getElementById("vis").style.display = "none";
+    collection.innerHTML = "";
+
+    var hotel_points = [];
+    var airbnb_points = [];
+
+    for (var i = 0; i < data.length; i++) {
+        var li = document.createElement("li");
+        li.className = "collection-item avatar";
+
+        var name, url, price;
+        if (data[i]._index == "airbnb") {
+            var source = data[i]._source;
+            name = source.name;
+            url = source.listing_url;
+            price = source.price;
+
+            var img = document.createElement("img");
+            img.src = "js/airbnb_logo.png";
+            img.className = "circle";
+            li.appendChild(img);
+
+            airbnb_points.push({
+                location: {
+                    lat: source.location.lat,
+                    lon: source.location.lon
+                }
+            });
+        } else {
+            var source = data[i]._source;
+            name = source.tripadvisor_name;
+            url = 'https://www.tripadvisor.com' + source.tripadvisor_url;
+
+            var prices = [];
+            var dates = ["2017-11-16", "2017-11-26", "2017-12-06", "2017-12-16", "2017-12-26"];
+            dates.forEach(function(date) {
+                if (source.hasOwnProperty(date)) {
+                    prices = prices.concat(source[date].map(function(h) {
+                        return +h.rates[0].price;
+                    }));
+                }
+            });
+            price = d3.mean(prices);
+
+            var icon = document.createElement("i");
+            icon.className = "material-icons circle";
+            icon.textContent = "hotel";
+            li.appendChild(icon);
+
+            hotel_points.push({
+                'lat': source.lat,
+                'lon': source.lon
+            });
+        }
+        var span = document.createElement("span");
+        span.className = "title";
+
+        var a = document.createElement("a");
+        a.href = url;
+        a.textContent = name;
+        a.setAttribute("target", "_blank");
+        span.appendChild(a);
+        li.appendChild(span);
+
+        var p = document.createElement("p");
+        p.textContent = `\$${Math.round(price)}`;
+        li.appendChild(p);
+
+        collection.appendChild(li);
+    }
+
+    plotPointsWrapper(airbnb_points, hotel_points);
 }

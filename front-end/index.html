@@ -26,29 +26,33 @@
 	          <label for="search">Search</label>
 	        </div>
     	</div>
-    	<div class="row center">
-        <p id="difference-text"></p>
-    		<h6 style="display:none;" id="price-hist-title" class="side-subheader">Overall Price Distribution</h6>
-    		<div id="prices-hist"></div>
-    	</div>
-      <div class="row center">
-        <h6 style="display:none;" id="price-time-title" class="side-subheader">Average Price Over Time</h6>
-        <div id="time"></div>
-      </div>
-      <div class="row center">
-        <h6 style="display:none;" id="beds-title" class="side-subheader">Room Summary</h6>
-        <div id="rooms"></div>
-      </div>
-      <div class="row center">
-        <h6 style="display:none;" id="available-hotel-title" class="side-subheader">Hotels in this Area</h6>
-        <div style="display:none;" class="collection" id="hotel-collection">
+      <div id="vis" style="display:none;">
+      	<div class="row center">
+          <p id="difference-text"></p>
+      		<h6 id="price-hist-title" class="side-subheader">Overall Price Distribution</h6>
+      		<div id="prices-hist"></div>
+      	</div>
+        <div class="row center">
+          <h6 id="price-time-title" class="side-subheader">Average Price Over Time</h6>
+          <div id="time"></div>
+        </div>
+        <div class="row center">
+          <h6 id="beds-title" class="side-subheader">Beds Available</h6>
+          <div id="rooms"></div>
+        </div>
+        <div class="row center">
+          <h6 id="available-hotel-title" class="side-subheader">Hotels in this Area</h6>
+          <div class="collection" id="hotel-collection">
+          </div>
+        </div>
+        <div class="row center">
+          <h6 id="available-airbnb-title" class="side-subheader">Airbnb Options in this Area</h6>
+          <div class="collection" id="airbnb-collection">
+          </div>
         </div>
       </div>
-      <div class="row center">
-        <h6 style="display:none;" id="available-airbnb-title" class="side-subheader">Airbnb Options in this Area</h6>
-        <div style="display:none;" class="collection" id="airbnb-collection">
-        </div>
-      </div>
+      <ul id="results" class="collection" style="display:none;">
+      </ul>
     </ul>
 
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
