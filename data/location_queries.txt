@@ -1,0 +1,32 @@
+GET hotels,airbnb/_search
+{
+  "query": {
+    "bool": {
+      "must": {
+        "match_all": {}
+      },
+      "filter": {
+        "geo_distance": {
+          "distance": radius,
+          "location": {
+            "lat": input_lat,
+            "lon": input_lon
+          }
+        }
+      }
+    }
+  },
+  "sort": [
+    {
+      "_geo_distance": {
+        "location": {
+          "lat": input_lat,
+          "lon": input_lon
+        },
+        "order": "asc",
+        "unit": "km",
+        "distance_type": "plane"
+      }
+    }
+  ]
+}
