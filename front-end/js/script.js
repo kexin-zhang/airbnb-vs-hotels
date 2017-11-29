@@ -162,6 +162,7 @@ queue().defer(d3.csv, "js/location_cell_centers.csv")
 function updatePanel(d) {
     last_selected = d.location_cell;
     document.getElementById("price-hist-title").style.display = "";
+    document.getElementById("price-time-title").style.display = "";
 
     var diff = prices_aggregated[d.location_cell].difference.toFixed(2);
     if (diff > 0) {
@@ -223,6 +224,7 @@ function updatePanel(d) {
             });
 
             createHistWrapper(airbnb_prices, hotel_prices);
+            createTimeSeries(hotel_prices);
           }
       },
       error: function(xhr) {
@@ -286,7 +288,7 @@ function createPriceHist(data, id, xmin, xmax, title) {
     };
 
     var width = 350 - margin.left - margin.right;
-    var height = 180 - margin.top - margin.bottom;
+    var height = 170 - margin.top - margin.bottom;
 
     var svg = d3.select("#prices-hist")
                 .append("svg")
@@ -343,37 +345,37 @@ function createPriceHist(data, id, xmin, xmax, title) {
 }
 
 function showAirbnbListings(listings) {
-  document.getElementById("available-airbnb-title").style.display = "";
+    document.getElementById("available-airbnb-title").style.display = "";
 
-  var collection = document.getElementById("airbnb-collection"); 
-  collection.style.display = "";
+    var collection = document.getElementById("airbnb-collection"); 
+    collection.style.display = "";
 
-  collection.innerHTML = ""; // remove current html
-  for (var i = 0; i < Math.min(listings.length, 10); i++) {
-    var a = document.createElement("a");
-    a.textContent = listings[i].name;
-    a.href = listings[i].listing_url;
-    a.className = "collection-item";
-    a.setAttribute("target", "_blank");
-    collection.appendChild(a);
-  }
+    collection.innerHTML = ""; // remove current html
+    for (var i = 0; i < Math.min(listings.length, 10); i++) {
+        var a = document.createElement("a");
+        a.textContent = listings[i].name;
+        a.href = listings[i].listing_url;
+        a.className = "collection-item";
+        a.setAttribute("target", "_blank");
+        collection.appendChild(a);
+    }
 }
 
 function showHotelListings(hotels) {
-  document.getElementById("available-hotel-title").style.display = "";
+    document.getElementById("available-hotel-title").style.display = "";
 
-  var collection = document.getElementById("hotel-collection");
-  collection.style.display = "";
+    var collection = document.getElementById("hotel-collection");
+    collection.style.display = "";
 
-  collection.innerHTML = "";
-  for (var i = 0; i < Math.min(hotels.length, 10); i++) {
-    var a = document.createElement("a");
-    a.textContent = hotels[i].tripadvisor_name;
-    a.href = hotels[i].tripadvisor_url;
-    a.className = "collection-item";
-    a.setAttribute("target", "_blank");
-    collection.appendChild(a);
-  }
+    collection.innerHTML = "";
+    for (var i = 0; i < Math.min(hotels.length, 10); i++) {
+        var a = document.createElement("a");
+        a.textContent = hotels[i].tripadvisor_name;
+        a.href = 'https://www.tripadvisor.com' + hotels[i].tripadvisor_url;
+        a.className = "collection-item";
+        a.setAttribute("target", "_blank");
+        collection.appendChild(a);
+    }
 }
 
 function plotPointsWrapper(airbnb, hotels) {
@@ -420,4 +422,76 @@ function plotPointsWrapper(airbnb, hotels) {
     }
   plotPoints();
   //map.on('viewreset moveend', plotAirbnb);
+}
+
+function createTimeSeries(data) {
+    d3.selectAll('#hotel-timeseries').remove();
+    var format = d3.time.format("%Y-%m-%d");
+
+    var prices = d3.nest()
+               .key(function(d) { return d.date; })
+               .rollup(function(v) { return d3.mean(v, function(d) { return d.price; })})
+               .entries(data);
+
+    prices.forEach(function(d) {
+        d.key = format.parse(d.key);
+    })
+
+    var margin = {
+        top: 10,
+        left: 40,
+        right: 10,
+        bottom: 30
+    };
+
+    var width = 350 - margin.left - margin.right;
+    var height = 180 - margin.top - margin.bottom;
+
+    var svg = d3.select("#time")
+                .append("svg")
+                .attr("id", "hotel-timeseries")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom);
+
+    var g = svg.append("g")
+               .attr("transform", "translate(" + margin.left + "," + margin.top + ")"); 
+
+    var x = d3.time.scale().rangeRound([0, width]).domain(d3.extent(prices, function(d) { return d.key; }));
+    var y = d3.scale.linear().rangeRound([height, 0]).domain([0, d3.max(prices, function(d) { return d.values; })]);
+
+    var line = d3.svg.line()
+                 .x(function(d) { return x(d.key); })
+                 .y(function(d) { return y(d.values)});
+
+    //console.log(prices);
+    g.append("path")
+     .datum(prices)
+     .attr("fill", "none")
+     .attr("stroke", "steelblue")
+     .attr("stroke-width", 2)
+     .attr("d", line);
+
+    // in case theres only one point in time
+    if (prices.length == 1) {
+      g.selectAll(".timeseries-point")
+       .data(prices)
+       .enter()
+       .append("circle")
+       .attr("cx", function(d) { return x(d.key); })
+       .attr("cy", function(d) { return y(d.values); })
+       .attr("fill", "steelblue")
+       .attr("r", 3)
+    }
+
+    var xAxis = d3.svg.axis().scale(x).orient('bottom').ticks(5);
+    var yAxis = d3.svg.axis().scale(y).orient('left');
+
+    g.append("g")
+     .attr("class", "x axis")
+     .attr("transform", "translate(0," + height + ")")
+     .call(xAxis);
+
+    g.append("g")
+     .attr("class", "y axis")
+     .call(yAxis);
 }
