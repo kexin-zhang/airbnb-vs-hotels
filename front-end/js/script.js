@@ -11,10 +11,14 @@ $(document).ready(function(){
     searchInput.addEventListener("keypress", searched);
 });
 
+const AIRBNB_COLOR = '#ef9a9a';
+const HOTEL_COLOR = '#406183';
+
 var last_selected; // for keeping track of clicked region
 
 voronoiMap = function(map, points) {
     var colors = ["#f7fcf0", "#e0f3db", "#ccebc5", "#a8ddb5", "#7bccc4", "#4eb3d3", "#2b8cbe", "#08589e"];
+    // var colors = ["#CAF270", "#73D487", "#30B097", "#288993", "#41607A", "#453B52"];
     var color_scale = d3.scale.quantile()
                         .domain(Object.keys(prices_aggregated).map(function(d) { return prices_aggregated[d].difference; }))
                         .range(colors);
@@ -260,8 +264,8 @@ function createHistWrapper(airbnb, hotel) {
 
     var min = Math.min(d3.min(airbnb), d3.min(hotel));
     var max = Math.max(d3.max(airbnb), d3.max(hotel));
-    createPriceHist(hotel, "hotel-hist-svg", min, max, "Hotels");
-    createPriceHist(airbnb, "airbnb-hist-svg", min, max, "Airbnbs");
+    createPriceHist(hotel, "hotel-hist-svg", min, max, "Hotels", HOTEL_COLOR);
+    createPriceHist(airbnb, "airbnb-hist-svg", min, max, "Airbnbs", AIRBNB_COLOR);
 }
 
 function variance(x) {
@@ -295,7 +299,7 @@ function chauvenet (x) {
     return temp
 }
 
-function createPriceHist(data, id, xmin, xmax, title) {
+function createPriceHist(data, id, xmin, xmax, title, color) {
     //console.log(data);
     //console.log(data);
     d3.selectAll('#' + id).remove();
@@ -350,7 +354,7 @@ function createPriceHist(data, id, xmin, xmax, title) {
         .attr("x", 1)
         .attr("width", (x(hist_data[0].dx) - x(0)) - 1)
         .attr("height", function(d) { return height - y(d.y); })
-        .attr("fill", "#2980b9");
+        .attr("fill", color);
 
     g.append("g")
        .attr("class", "x axis")
@@ -419,9 +423,9 @@ function plotPointsWrapper(airbnb, hotels) {
      .append("circle")
      .attr("class", "airbnb-circle")
      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
-     .attr('fill', "#8e44ad")
+     .attr('fill', AIRBNB_COLOR)
      .attr('stroke', 'black')
-     .attr("r", 2)
+     .attr("r", 3)
      .style('opacity', .5);
 
     g.selectAll(".hotel-circle").remove();
@@ -431,9 +435,9 @@ function plotPointsWrapper(airbnb, hotels) {
      .append("circle")
      .attr("class", "hotel-circle")
      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
-     .attr('fill', "#D64541")
+     .attr('fill', HOTEL_COLOR)
      .attr('stroke', 'black')
-     .style('opacity', .9)
+     .style('opacity', .7)
      .attr("r", 4);
     }
     
@@ -524,7 +528,7 @@ function createTimeSeries(data, location_cell) {
 
                 var x = d3.time.scale().rangeRound([0, width]).domain(d3.extent(all_prices, function(d) { return d.key; }));
                 var y = d3.scale.linear().rangeRound([height, 0]).domain([0, d3.max(all_prices, function(d) { return d.values; })]);
-                var z = d3.scale.ordinal().range(['steelblue', 'green']).domain(dataset.map(function(d) { return d.id; }));
+                var z = d3.scale.ordinal().range([AIRBNB_COLOR, HOTEL_COLOR]).domain(["airbnb", "hotel"]);
 
                 var line = d3.svg.line()
                              .x(function(d) { return x(d.key); })
@@ -550,7 +554,7 @@ function createTimeSeries(data, location_cell) {
                     .append("circle")
                     .attr("cx", function(d) { return x(d.key); })
                     .attr("cy", function(d) { return y(d.values); })
-                    .attr("fill", "steelblue")
+                    .attr("fill", HOTEL_COLOR)
                     .attr("r", 3)
                 }
 
@@ -588,7 +592,7 @@ function createTimeSeries(data, location_cell) {
         g.append("path")
          .datum(prices)
          .attr("fill", "none")
-         .attr("stroke", "steelblue")
+         .attr("stroke", HOTEL_COLOR)
          .attr("stroke-width", 2)
          .attr("d", line);
 
@@ -600,7 +604,7 @@ function createTimeSeries(data, location_cell) {
             .append("circle")
             .attr("cx", function(d) { return x(d.key); })
             .attr("cy", function(d) { return y(d.values); })
-            .attr("fill", "steelblue")
+            .attr("fill", HOTEL_COLOR)
             .attr("r", 3)
         }
 
@@ -873,7 +877,7 @@ function reviewBarChart(location_cell) {
     var y1 = d3.scale.ordinal();
 
     var color = d3.scale.ordinal()
-                  .range(["#98abc5", "#8a89a6", "#7b6888"])
+                  .range([HOTEL_COLOR, AIRBNB_COLOR])
                   .domain(["hotel", "airbnb"]);
 
     queue().defer(d3.csv, "js/hotel_sentiments.csv")
