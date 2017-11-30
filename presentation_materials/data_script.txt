@@ -1,0 +1,5 @@
+We gathered pricing, review, location, and amenities data for Airbnb and hotels in New York.
+
+Airbnb data was gathered from a dataset released by Inside Airbnb and some scraping using Selenium for price data over time. The final dataset had 44,000 listings (37.42 MB).
+
+Hotel data was gathered from a combination of scraping TripAdvisor and data retrieved from the Amadeus API. The final dataset had 265 hotel listings (7.79 MB).
