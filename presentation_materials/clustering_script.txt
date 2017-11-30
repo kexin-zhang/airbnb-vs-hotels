@@ -1,0 +1,10 @@
+
+    We visualized the Airbnb and Hotel listings geographically on a chloropleth map. To do this effectively, we needed a method to identify “clusters” of listings - listings that were nearby one another to a defined degree.
+
+    We attempted to create a lat/long grid and assign hotels and airbnbs to grid cells, but the hotels’ sparseness made this unsubstantial.
+
+    We then used subway stations as cell centers, and conducted a Nearest-Neighbor algorithm for the clusters. This resulted in interesting clusters, but in dense areas the Voronoi boundaries did not provide meaningful information and in sparse areas they spanned unreasonable areas, e.g. across a river.
+
+    Of the 265 hotels, we found 130 clusters by conducting the Subway Station Nearest Neighbor algorithm, and found that this visualization, though strangely distributed, provided a meaningful number of clusters. We used this number as our K for a K-means algorithm on the hotels alone - this found well-distributed clusters to which we then assigned the Airbnb listings, checking if a listing was within 1 kilometer of a cluster. Of 44,000 listings, 27,000 Airbnb’s found an appropriate cluster.
+
+    With these assigned clusters, we were able to map each listing to its price over time, and compute the average price per cluster for both types of stay options.
