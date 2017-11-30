@@ -1,0 +1,7 @@
+In order for the user to be able to easily find and compare Airbnbs and Hotels, we created a unified search based on location that returns the nearest of both listings.
+
+We used ElasticSearch as our database and search engine to handle the search queries.
+
+We take in input string and convert it to a latitude and longitude pair using the OpenStreetMap API.
+
+We then run a search query across both the Airbnb and Hotel indices to return the nearest matching listings.
