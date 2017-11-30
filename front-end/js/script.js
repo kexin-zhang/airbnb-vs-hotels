@@ -247,7 +247,7 @@ function updatePanel(d) {
                     createDonutChart("hotel-rooms", hotel_beds, "Hotels");
                 }
                 createDonutChart("airbnb-rooms", airbnbs.map(function(d) { return +d["_source"]["beds"]} ), "Airbnb");
-                reviewBarChart(d.location_cell);
+                reviewBarChart2(d.location_cell);
             }
         },
         error: function(xhr) {
@@ -506,7 +506,7 @@ function createTimeSeries(data, location_cell) {
                     });
                     by_date = by_date.concat(dates);
                 });
-                console.log(by_date);
+                //console.log(by_date);
 
                 airbnb_prices = d3.nest()
                          .key(function(d) { return d.date; })
@@ -521,10 +521,10 @@ function createTimeSeries(data, location_cell) {
                     {id: "hotel", prices: prices},
                     {id: "airbnb", prices: airbnb_prices}
                 ];
-                console.log(dataset);
+                //console.log(dataset);
 
                 var all_prices = prices.concat(airbnb_prices);
-                console.log(all_prices);
+                //console.log(all_prices);
 
                 var x = d3.time.scale().rangeRound([0, width]).domain(d3.extent(all_prices, function(d) { return d.key; }));
                 var y = d3.scale.linear().rangeRound([height, 0]).domain([0, d3.max(all_prices, function(d) { return d.values; })]);
@@ -541,7 +541,7 @@ function createTimeSeries(data, location_cell) {
                              .attr("class", "timeline");
 
                 lines.append("path")
-                     .attr("d", function(d) { console.log(d.prices); return line(d.prices); })
+                     .attr("d", function(d) { return line(d.prices); })
                      .attr("fill", "none")
                      .attr("stroke-width", 2)
                      .attr("stroke", function(d) { return z(d.id); });
@@ -943,4 +943,115 @@ function reviewBarChart(location_cell) {
              .attr("transform", "translate(0," + height + ")")
              .call(xAxis);
     });
+}
+
+function reviewBarChart2(location_cell) {
+    d3.select("#reviews-svg").remove();
+
+    var margin = {
+        top: 10,
+        left: 10,
+        right: 10,
+        bottom: 30
+    };
+
+    var width = 400 - margin.left - margin.right;
+    var height = 180 - margin.top - margin.bottom;
+
+    var svg = d3.select("#reviews")
+                .append("svg")
+                .attr("id", "reviews-svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom);
+
+    var g = svg.append("g")
+               .attr("transform", "translate(" + margin.left + "," + margin.top + ")");  
+
+    var x = d3.scale.linear().range([0, width]);
+    var y = d3.scale.ordinal().rangeRoundBands([0, height]);
+    var z = d3.scale.ordinal().range([AIRBNB_COLOR, HOTEL_COLOR]).domain(["airbnb", "hotel"]);
+
+    var xAxis = d3.svg.axis().scale(x).orient("bottom");
+    var yAxis = d3.svg.axis().scale(y).orient("left").tickValues([]);
+
+    queue().defer(d3.csv, "js/hotel_sentiments.csv")
+           .defer(d3.csv, "js/air_sentiments.csv")
+           .await(function(error, hotel, airbnb) {
+                hotel = hotel.filter(function(d) {
+                    return location_cell == d.location_tag;
+                });
+                if (!hotel.length) {
+                    return;
+                } 
+                airbnb = airbnb.filter(function(d) {
+                    return location_cell == d.location_tag;
+                });
+                if (!airbnb.length) {
+                    return;
+                }
+                hotel = hotel[0];
+                airbnb = airbnb[0];
+
+                var data = [
+                    {name: "hotel-location", value: hotel.location, type: "hotel"},
+                    {name: "airbnb-location", value: airbnb.location, type: "airbnb"},
+                    {name: "hotel-hospitality", value: hotel.hospitality, type: "hotel"},
+                    {name: "airbnb-hospitality", value: airbnb.hospitality, type: "airbnb"},
+                    {name: "hotel-room-quality", value: hotel.room_quality, type: "hotel"},
+                    {name: "airbnb-room-quality", value: airbnb.room_quality, type: "airbnb"}                   
+                ]
+
+                console.log(data);
+                console.log(location_cell);
+                
+                var xmin = d3.min(data, function(d) { return d.value; });
+                var xmax = d3.max(data, function(d) { return d.value; });
+
+                var max = Math.max(Math.abs(xmax), Math.abs(xmin));
+
+                x.domain([-max, max]);
+                y.domain(data.map(function(d) { return d.name; }));
+
+                var bars = g.selectAll(".bar")
+                             .data(data)
+                             .enter()
+                             .append("g");
+
+                bars.append("rect")
+                     .attr("class", "bar")
+                     .attr("x", function(d) { return x(Math.min(d.value, 0)); })
+                     .attr("y", function(d) { return y(d.name); })
+                     .attr("width", function(d) { return Math.abs(x(d.value) - x(0)); })
+                     .attr("height", y.rangeBand())
+                     .attr("fill", function(d) { return z(d.type); });
+
+                bars.append("text")
+                    .attr("x", function(d) {
+                        if (d.value >= 0) {
+                            return width/2 - 5;
+                        }
+                        return width/2 + 5;
+                    })
+                    .attr("y", function(d) { return y(d.name) + y.rangeBand()/2 + 2.5; })
+                    .attr("text-anchor", function(d) {
+                        if (d.value >= 0) {
+                            return "end";
+                        }
+                        return "start";
+                    })
+                    .text(function(d) { return d.name; });
+
+
+                g.append("g")
+                 .attr("transform", "translate(0," + height + ")")
+                 .attr("class", "x axis")
+                 .call(xAxis);
+
+                g.append("g")
+                 .attr("transform", "translate(" + width/2 + ",0)")
+                 .attr("class", "y axis")
+                 .call(yAxis);
+
+           })    
+
 }
