@@ -80,9 +80,9 @@ air_scores['hospitality']     = air_scores.hospitality - hospitality_mean
 air_scores['room_quality']    = air_scores.room_quality - room_quality_mean
 
 hotel_scores.index.name = 'location_tag'
-hotel_scores.to_csv('../data/air_sentiments.csv')
+hotel_scores.to_csv('../data/hotel_sentiments.csv')
 air_scores.index.name = 'location_tag'
-air_scores.to_csv('../data/hotel_sentiments.csv')
+air_scores.to_csv('../data/air_sentiments.csv')
 
 print(hotel_scores.describe())
 print(air_scores.describe())
