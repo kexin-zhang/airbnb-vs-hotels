@@ -968,7 +968,7 @@ function reviewBarChart2(location_cell) {
                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");  
 
     var x = d3.scale.linear().range([0, width]);
-    var y = d3.scale.ordinal().rangeRoundBands([0, height]);
+    var y = d3.scale.ordinal().rangeRoundBands([0, height], .1);
     var z = d3.scale.ordinal().range([AIRBNB_COLOR, HOTEL_COLOR]).domain(["airbnb", "hotel"]);
 
     var xAxis = d3.svg.axis().scale(x).orient("bottom");
