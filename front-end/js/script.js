@@ -1000,9 +1000,6 @@ function reviewBarChart2(location_cell) {
                     {name: "hotel-room-quality", value: hotel.room_quality, type: "hotel"},
                     {name: "airbnb-room-quality", value: airbnb.room_quality, type: "airbnb"}                   
                 ]
-
-                console.log(data);
-                console.log(location_cell);
                 
                 var xmin = d3.min(data, function(d) { return d.value; });
                 var xmax = d3.max(data, function(d) { return d.value; });
@@ -1040,7 +1037,6 @@ function reviewBarChart2(location_cell) {
                         return "start";
                     })
                     .text(function(d) { return d.name; });
-
 
                 g.append("g")
                  .attr("transform", "translate(0," + height + ")")
