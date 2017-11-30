@@ -1,0 +1,12 @@
+Lots of subjective information that may not be present in our datasets
+Reviews are good but don't have a standard form and often only have a single 1 - 5 rating.
+Directed sentiment towards listing aspects (location, hospitality, room quality)
+Get a "sentiment tree" using the CoreNLP sentiment tagger neural net for the review, break it into phrases(subtrees), classify the phrases.
+    Classifier - Use regex on short phrases to determine the aspect by keywords
+                 The classifier extracts the longest phrase that only matches a single aspect because that captures the most information
+
+Response bias: People are very positive (overwhelmingly for airbnbs), so the bar you see is normalized so that 0 is the average across both airbnbs and hotels
+The main point of this:
+This lets us handle sentences that are positive towards one aspect and negative towards another
+"The location was great but the staff rude"
+
