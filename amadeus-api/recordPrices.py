@@ -32,16 +32,15 @@ def query(hotel_ids, check_in, check_out):
         out.write(json.dumps(output, indent=2))
     # print(output)
 
-# with open("../data/hotels_identifiers.csv") as f:
-#     reader = csv.DictReader(f)
-#     hotel_ids = [row["amadeus_code"] for row in reader]
+with open("../data/hotels_identifiers.csv") as f:
+    reader = csv.DictReader(f)
+    hotel_ids = [row["amadeus_code"] for row in reader]
 
-# curr = datetime.today()
-# while curr < datetime.strptime("2018-01-01", "%Y-%m-%d"):
-#     check_in = datetime.strftime(curr, "%Y-%m-%d")
-#     check_out = datetime.strftime(curr + timedelta(days=1), "%Y-%m-%d")
-#     print(check_in, check_out)
-#     query(hotel_ids, check_in, check_out)
-#     curr += timedelta(days=10)
+curr = datetime.today()
+while curr < datetime.strptime("2018-01-01", "%Y-%m-%d"):
+    check_in = datetime.strftime(curr, "%Y-%m-%d")
+    check_out = datetime.strftime(curr + timedelta(days=1), "%Y-%m-%d")
+    print(check_in, check_out)
+    query(hotel_ids, check_in, check_out)
+    curr += timedelta(days=10)
 
-query(['WHNYC502', 'CYNYCPKC', 'HINYCC4E'], '2017-12-06', '2017-12-07')

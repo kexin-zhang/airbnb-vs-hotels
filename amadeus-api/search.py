@@ -1,10 +1,11 @@
 import requests
 import json, csv, time
+import os
 
 url = 'https://api.sandbox.amadeus.com/v1.2/hotels/search-circle'
 
 payload = {
-	'apikey': 'LYnMGAajPtInzPDn6RFA6D1jZqUFFABj',
+	'apikey': os.environ['AMADEUS_KEY'],
 	'latitude': 37.7749,
 	'longitude': -122.4194,
 	'radius': 1,
@@ -18,12 +19,7 @@ payload = {
 seen = set()
 out = []
 
-outfile = open("../tripadvisor_scraper/nyc_listings_latlon5.csv", "a")
-fieldnames = ["name", "date_scraped", "check_in","check_out","adults","rooms", "address", "lat", "lon", "provider","reviews","rating","price", "range" ,"amenities", "tripadvisor rank", "star rating","url"]
-writer = csv.DictWriter(outfile, fieldnames=fieldnames)
-writer.writeheader()
-
-with open("../tripadvisor_scraper/nyc_listings_all.csv") as f:
+with open("../data/tripadvisor_output.csv") as f:
 	reader = csv.DictReader(f)
 	for line in reader:
 		osm_payload = {
@@ -47,7 +43,7 @@ with open("../tripadvisor_scraper/nyc_listings_all.csv") as f:
 			else:
 				print("500")
 
-			with open("x8.json", "w") as f:
+			with open("searh_results.json", "w") as f:
 				json.dump(out, f)
 
 		else:
@@ -55,8 +51,6 @@ with open("../tripadvisor_scraper/nyc_listings_all.csv") as f:
 			line["lon"] = None
 
 		print(line["lat"], line["lon"])
-		writer.writerow(line)
-		outfile.flush()
 		time.sleep(.5)
 
 print(len(out))
