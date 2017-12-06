@@ -60,3 +60,10 @@ Reviews are in json lines format - each line in the file is a JSON with the foll
 * title: title of review
 * text: text content of review
 * url: this is the hotel's TripAdvisor url, use this to match up reviews with hotels
+
+# Uploading Data
+`es_uploader.py` -  Python script to load data into an Elasticsearch instance.
+
+Requires the elasticsearch package. Install it with pip: `pip install elasticsearch`
+
+Each file can be uploaded individually with a corresponding method call in `es_uploader`.
