@@ -1,12 +1,13 @@
 import csv, json, requests, time
 from datetime import datetime, timedelta
+import os
 
 def query(hotel_ids, check_in, check_out):
     fname = "hotels{}_to_{}.json".format(check_in, check_out)
     output = []
     for code in hotel_ids:
         payload = {
-            'apikey': 'LYnMGAajPtInzPDn6RFA6D1jZqUFFABj',
+            'apikey': os.environ['AMADEUS_KEY'],
             'check_in': check_in,
             'check_out': check_out,
             'all_rooms': True,
