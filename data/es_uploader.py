@@ -327,5 +327,3 @@ def load_airbnb_prices(es):
             '_source': doc
         })
     helpers.bulk(es, actions)
-
-load_airbnb_prices(es)
