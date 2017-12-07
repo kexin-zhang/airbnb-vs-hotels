@@ -51,7 +51,10 @@ The Airbnb listings are from [Inside Airbnb](http://insideairbnb.com/get-the-dat
 To see some example data that we scraped/collected/merged, see the [data folder](https://github.com/kexin-zhang/airbnb-vs-hotels/tree/master/data).
 
 ### Add data to ElasticSearch
-In AWS, create a new [ElasticSearch instance](https://aws.amazon.com/elasticsearch-service/), with indices for `hotels` (all hotel data), `airbnbs` (Airbnb listing data), and `airbnb_prices` (Airbnb temporal data). 
+In AWS, create a new [ElasticSearch instance](https://aws.amazon.com/elasticsearch-service/), with indices for `hotels` (all hotel data), `airbnbs` (Airbnb listing data), and `airbnb_prices` (Airbnb temporal data). See the [data folder](https://github.com/kexin-zhang/airbnb-vs-hotels/tree/master/data) for more details about uploading.
+
+### Sentiment Analysis on Reviews
+See the [reviews analysis folder](https://github.com/kexin-zhang/airbnb-vs-hotels/tree/master/reviews-nlp) for more details.
 
 ### Running the Web App
 To run the web application, first set environment variables for ElasticSearch access keys:
