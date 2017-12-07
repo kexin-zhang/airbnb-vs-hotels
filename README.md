@@ -8,8 +8,6 @@ Our CX4242 project focuses on quantifying differences between Airbnb listings an
 4. Visualization UI: We summarized all of the data and analyses through an interactive webpage. 
 
 Our finalized datasets are stored in an AWS ElasticSearch instance, and [our site](http://airbnb-vs-hotels.mgejdapexj.us-east-1.elasticbeanstalk.com/) is hosted with AWS ElasticBeanstalk.
-![Website UI](presentation_materials/project.PNG)
-
 
 ## Installation
 To install all Python dependencies used in this project, run
@@ -68,3 +66,4 @@ cd flask-app
 python3 application.py
 ```
 Navigate to `localhost:8000` in your browser to see the site. 
+
