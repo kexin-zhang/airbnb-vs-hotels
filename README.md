@@ -7,19 +7,17 @@ Our CX4242 project focuses on quantifying differences between Airbnb listings an
 3. Search engine: We compiled all Airbnb and hotel data into an ElasticSearch instance hosted on AWS, to be able to search across both datasets at once.
 4. Visualization UI: We summarized all of the data and analyses through an interactive webpage. 
 
-## Installation & Execution (for a demo)
-To view a demo of our final product, the web interface, execute the following commands.
-```
-cd front-end
-python3 http.server
-```
-Afterwards, navigate to `localhost:8000` in a browser window. 
+Our finalized datasets are stored in an AWS ElasticSearch instance, and [our site](http://airbnb-vs-hotels.mgejdapexj.us-east-1.elasticbeanstalk.com/) is hosted with AWS ElasticBeanstalk.
+![Website UI](presentation_materials/project.PNG)
 
-## Installation & Execution (for data collection/analysis)
-To install all Python dependencies for the scripts used during the data collection phases, run
+
+## Installation
+To install all Python dependencies used in this project, run
 ```
 pip3 install -r requirements.txt
 ```
+
+## Execution - Instructions for Recreating our Project
 
 ### Running the TripAdvisor scraper
 First, use the appropriate repository by doing `cd tripadvisor_scraper`.
@@ -51,3 +49,22 @@ The Airbnb listings are from [Inside Airbnb](http://insideairbnb.com/get-the-dat
 
 ### Scraping Airbnb prices over time
 
+### Sample Data
+To see some example data that we scraped/collected/merged, see the [data folder](https://github.com/kexin-zhang/airbnb-vs-hotels/tree/master/data).
+
+### Add data to ElasticSearch
+In AWS, create a new [ElasticSearch instance](https://aws.amazon.com/elasticsearch-service/), with indices for `hotels` (all hotel data), `airbnbs` (Airbnb listing data), and `airbnb_prices` (Airbnb temporal data). 
+
+### Running the Web App
+To run the web application, first set environment variables for ElasticSearch access keys:
+```
+export ES_KEY='your key ID here' // or setx ES_KEY "key ID" in Windows
+export ES_SECRET='your secret here' // or setx ES_SECRET "secret" in Windows
+```
+
+Then, start the web application.
+```
+cd flask-app
+python3 application.py
+```
+Navigate to `localhost:8000` in your browser to see the site. 
