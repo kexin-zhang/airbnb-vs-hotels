@@ -9,4 +9,3 @@ Response bias: People are very positive (overwhelmingly for airbnbs), so the bar
 The main point of this:
 This lets us handle sentences that are positive towards one aspect and negative towards another
 "The location was great but the staff rude"
-
