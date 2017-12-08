@@ -36,8 +36,8 @@ export AMADEUS_KEY='your api key here'
 setx AMADEUS_KEY "your api key here"
 ``` 
 We wanted to merge data from both TripAdvisor and Amadeus.
-* search.py - This script searches for hotels in Amadeus based off of the coordinates of hotels we've already scraped from TripAdvisor. 
-* recordPrices.py - This script searches each hotel for prices across a range of dates. 
+* `search.py` - This script searches for hotels in Amadeus based off of the coordinates of hotels we've already scraped from TripAdvisor. 
+* `recordPrices.py` - This script searches each hotel for prices across a range of dates. 
 ```
 cd amadeus-api
 python search.py
