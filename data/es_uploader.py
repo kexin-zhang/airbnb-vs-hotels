@@ -196,6 +196,7 @@ def create_airbnb_mapping(es):
     es.indices.create(index="airbnb")
     es.indices.put_mapping(index="airbnb", doc_type=map_name, body=mapping)
 
+# Loads airbnb listings with latitude and longitude as geopoints
 def load_airbnb_geo_listings(es):
     filename = 'airbnb_listings_tagged.csv'
 
@@ -284,6 +285,7 @@ def load_hotels_merged(es):
         break
     helpers.bulk(es, actions)
 
+# Loads merged hotel data with latitude and longitude as geopoints
 def load_hotels_merged_geo(es):
     filename = 'hotels_merged.json'
 
@@ -327,5 +329,3 @@ def load_airbnb_prices(es):
             '_source': doc
         })
     helpers.bulk(es, actions)
-
-load_airbnb_prices(es)

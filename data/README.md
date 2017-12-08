@@ -2,13 +2,7 @@
 
 Data was obtained by merging collected data from TripAdvisor and the AmadeusAPI.
 
-`hotel_identifiers.csv`: Basic identifying information for the 265 hotels in our dataset.
-* tripadvisor_name: name displayed on TripAdvisor
-* amadeus_name: name displayed on Amadeus
-* tripadvisor_url: acts as a unique identifier to associate hotels with TripAdvisor information
-* amadeus_code: property code from Amadeus. Also acts as a unique identifier
-
-`hotel_features_tagged.json`: More features about each of the hotels
+`hotel_merged.json`: More features about each of the hotels
 List of hotel dictionaries with the following attributes:
 * tripadvisor_name
 * amadeus_name
@@ -27,11 +21,20 @@ List of hotel dictionaries with the following attributes:
 * amadeus_amenities: list of hotel amenities from amadeus
 * amadeus_awards: list of awards that the hotel has won
 * location_cell: the voronoi cell that this hotel belongs to
+* 2017-11-16: pricing information list (see below)
+* 2017-11-26
+* 2017-12-06
+* 2017-12-16
+* 2017-12-26
 
-`hotels<check in date>_to_<check out date>.json`: Pricing information for each hotel for the check in and check out date. All data was scraped on 2017-11-16. 
-List of hotel dictionaries with the following attributes:
-* rooms: list of dictionaries with information about the room type and the price of the room
-* property_code: this corresponds with the amadeus_code field in the other files
+Pricing information are lists of dictionaries with the following attributes. Each dictionary has the information for a type of room in the hotel.
+* rates: rate of staying at the hotel for a night in that type of room
+* descriptions: description of rooms
+* room_type_code
+* rate_type_code
+* booking_code
+* rate_plan_code
+* room_type_info
 
 `location_cell_centers.csv`: Coordinates for the center of voronoi cells
 * location_cell: location cell ID
@@ -60,3 +63,10 @@ Reviews are in json lines format - each line in the file is a JSON with the foll
 * title: title of review
 * text: text content of review
 * url: this is the hotel's TripAdvisor url, use this to match up reviews with hotels
+
+# Uploading Data
+`es_uploader.py` -  Python script to load data into an Elasticsearch instance.
+
+Requires the elasticsearch package. Install it with pip: `pip install elasticsearch`
+
+Each file can be uploaded individually with a corresponding method call in `es_uploader`.
