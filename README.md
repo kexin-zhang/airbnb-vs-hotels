@@ -10,9 +10,11 @@ Our CX4242 project focuses on quantifying differences between Airbnb listings an
 Our finalized datasets are stored in an AWS ElasticSearch instance, and [our site](http://airbnb-vs-hotels.mgejdapexj.us-east-1.elasticbeanstalk.com/) is hosted with AWS ElasticBeanstalk.
 
 ## Installation
+Our project uses Python 3.5.
+
 To install all Python dependencies used in this project, run
 ```
-pip3 install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 ## Execution - Instructions for Recreating our Project
@@ -26,7 +28,7 @@ First, use the appropriate repository by doing `cd tripadvisor_scraper`.
 * `reviews_spider.py` - Scrapes review text for each listing obtained from the listings spider. Run with `scrapy crawl reviews -a filename=<filename>`, where the file is a CSV with TripAdvisor URLs for each hotel. 
 
 ### Running scripts to collect data from Amadeus
-In order to access the Amadeus API, [sign for an API key](https://sandbox.amadeus.com/api-catalog). Then, set an environment variable for this key. 
+Scripts for collecting data from the Amadeus API are in the `amadeus-api` folder. In order to access the Amadeus API, [sign for an API key](https://sandbox.amadeus.com/api-catalog). Then, set an environment variable for this key. 
 ```
 \\ On Unix-based systems:
 export AMADEUS_KEY='your api key here'
@@ -38,14 +40,15 @@ We wanted to merge data from both TripAdvisor and Amadeus.
 * recordPrices.py - This script searches each hotel for prices across a range of dates. 
 ```
 cd amadeus-api
-python3 search.py
-python3 recordPrices.py
+python search.py
+python recordPrices.py
 ```
 
 ### Downloading Basic Airbnb Listing and Reviews Data
 The Airbnb listings are from [Inside Airbnb](http://insideairbnb.com/get-the-data.html).
 
 ### Scraping Airbnb prices over time
+* `data/scrape_airbnb_prices.py` scrapes Airbnb prices for given listings on given dates.
 
 ### Sample Data
 To see some example data that we scraped/collected/merged, see the [data folder](https://github.com/kexin-zhang/airbnb-vs-hotels/tree/master/data).
@@ -66,7 +69,7 @@ export ES_SECRET='your secret here' // or setx ES_SECRET "secret" in Windows
 Then, start the web application.
 ```
 cd flask-app
-python3 application.py
+python application.py
 ```
 Navigate to `localhost:8000` in your browser to see the site. 
 
